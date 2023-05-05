@@ -4,26 +4,63 @@ using UnityEngine;
 
 public class FootSteps : MonoBehaviour
 {
-    public AudioSource walkingFootstepsSound;
-    public AudioSource sprintingFootstepsSound;
+    public AudioClip[] walkingSounds;
+    public AudioClip[] sprintingSounds;
+
+    public AudioSource walkingAudioSource;
+    public AudioSource sprintingAudioSource;
+
+    public float walkStepDelay = 0.5f; // The delay between footsteps when walking
+    public float sprintStepDelay = 0.2f; // The delay between footsteps when sprinting
+
+    private bool isSprinting;
+    private float stepDelay;
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            walkingFootstepsSound.enabled = true;
-            if (Input.GetKey(KeyCode.LeftShift))
+        if (!Input.GetKey(KeyCode.LeftControl))
+        {// Check if any movement key is pressed
+            bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+
+            // Check if sprint key is pressed
+            isSprinting = Input.GetKey(KeyCode.LeftShift);
+
+            // Stop walking sound if not moving or sprinting
+            if (!isMoving || isSprinting)
             {
-                sprintingFootstepsSound.enabled = true;
+                walkingAudioSource.Stop();
             }
-            else
+
+            // Play walking sound if moving and not sprinting
+            if (isMoving && !isSprinting)
             {
-                sprintingFootstepsSound.enabled = false;
+                if (!walkingAudioSource.isPlaying)
+                {
+                    walkingAudioSource.clip = walkingSounds[Random.Range(0, walkingSounds.Length)];
+                    walkingAudioSource.Play();
+                }
+            }
+
+            // Play sprinting sound if moving and sprinting
+            if (isMoving && isSprinting)
+            {
+                if (!sprintingAudioSource.isPlaying)
+                {
+                    sprintingAudioSource.clip = sprintingSounds[Random.Range(0, sprintingSounds.Length)];
+                    sprintingAudioSource.Play();
+                }
+            }
+
+            // Stop sprinting sound if not moving or not sprinting
+            if ((!isMoving || !isSprinting) && sprintingAudioSource.isPlaying)
+            {
+                sprintingAudioSource.Stop();
             }
         }
         else
         {
-            walkingFootstepsSound.enabled = false;
+            walkingAudioSource.Stop();
+            sprintingAudioSource.Stop();
         }
     }
 }
