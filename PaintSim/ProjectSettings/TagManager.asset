@@ -16,7 +16,7 @@ TagManager:
   - AllowPickup
   - Player
   - Hidden
-  - 
+  - GrabbedObject
   - 
   - 
   - 

@@ -4,67 +4,87 @@ using UnityEngine;
 
 public class Chair : MonoBehaviour
 {
-    public Transform sitPoint;
-    public float sitRotationOffset = 0f;
-    public LayerMask playerLayerMask;
-    public KeyCode interactKey = KeyCode.E;
-
-    private bool isSitting = false;
-    private GameObject playerObject = null;
-    private Vector3 originalPosition;
-    private Quaternion originalRotation;
-    private bool isPlayerInTrigger = false;
+    public GameObject playerStanding;
+    public GameObject playerSitting;
+    public Camera standingCamera;
+    public Camera sittingCamera;
+    public bool interactable;
+    public bool sitting;
 
     void Start()
     {
-        originalPosition = transform.position;
-        originalRotation = transform.rotation;
+        // Initialize variables
+        interactable = false;
+        sitting = false;
+
+        // Set standing camera to main camera if not assigned
+        if (standingCamera == null)
+        {
+            standingCamera = Camera.main;
+        }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.CompareTag("MainCamera"))
         {
-            isPlayerInTrigger = true;
+            interactable = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.CompareTag("MainCamera"))
         {
-            isPlayerInTrigger = false;
+            interactable = false;
         }
     }
 
     void Update()
+{
+    if (interactable)
     {
-        if (!isSitting && Input.GetKeyDown(interactKey) && isPlayerInTrigger)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 1f, playerLayerMask);
-            if (colliders.Length > 0)
+            playerSitting.SetActive(true);
+            sitting = true;
+            playerStanding.SetActive(false);
+            if (standingCamera != null)
             {
-                playerObject = colliders[0].gameObject;
-                playerObject.transform.position = sitPoint.position;
-                playerObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, sitRotationOffset, 0f));
-                playerObject.GetComponent<CharacterController>().enabled = false;
-                isSitting = true;
+                standingCamera.enabled = false;
+            }
+            if (sittingCamera != null && sittingCamera.GetComponent<Camera>() != null)
+            {
+                sittingCamera.GetComponent<Camera>().enabled = true;
+            }
+            interactable = false;
+
+            // disable the audio listener and camera on the main camera, and enable them on the sitting camera
+            Camera.main.GetComponent<Camera>().enabled = false;
+            if (sittingCamera?.GetComponent<Camera>() != null)
+            {
+                sittingCamera.GetComponent<Camera>().enabled = true;
             }
         }
-        else if (isSitting && Input.GetKeyDown(interactKey))
+    }
+
+    if (sitting)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            playerObject.transform.position = originalPosition;
-            playerObject.transform.rotation = originalRotation;
-            playerObject.GetComponent<CharacterController>().enabled = true;
-            playerObject = null;
-            isSitting = false;
-        }
-        
-        // Add the following lines to keep the player seated in the chair
-        if (isSitting && playerObject != null)
-        {
-            playerObject.transform.position = sitPoint.position;
-            playerObject.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, sitRotationOffset, 0f));
+            playerSitting.SetActive(false);
+            playerStanding.SetActive(true);
+            standingCamera.enabled = true;
+            if (sittingCamera != null && sittingCamera.GetComponent<Camera>() != null)
+            {
+                sittingCamera.GetComponent<Camera>().enabled = false;
+            }
+            sitting = false;
+
+            // disable the audio listener and camera on the sitting camera, and enable them on the main camera
+            Camera.main.GetComponent<Camera>().enabled = true;
         }
     }
+}
+
 }

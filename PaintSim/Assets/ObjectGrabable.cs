@@ -16,12 +16,14 @@ public class ObjectGrabable : MonoBehaviour
     {
         this.ObjectGrabPointTransform = ObjectGrabPointTransform;
         objectRigidbody.useGravity = false;
+        //gameObject.layer = LayerMask.NameToLayer("GrabbedObject");
     }
 
     public void Drop()
     {
         this.ObjectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
+        gameObject.layer = LayerMask.NameToLayer("AllowPickup");
     }
     // Start is called before the first frame update
     
