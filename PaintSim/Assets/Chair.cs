@@ -9,6 +9,11 @@ public class Chair : MonoBehaviour
     public GameObject UItext;
     public GameObject Desktop;
     public GameObject LeavePC;
+    public GameObject RadientUI;
+    public GameObject PigmentPeddlerUI;
+    public GameObject InaccusmartUI;
+    public GameObject FauxPropertiesUI;
+    public GameObject DoodadEmpUI;
     public Camera standingCamera;
     public Camera sittingCamera;
     public bool interactable;
