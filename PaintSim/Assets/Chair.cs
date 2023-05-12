@@ -125,6 +125,8 @@ public class Chair : MonoBehaviour
             {
                 Desktop.SetActive(true);
                 onPC = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
 
             if (onPC && Input.GetKeyDown(KeyCode.Escape))
@@ -133,6 +135,8 @@ public class Chair : MonoBehaviour
                 onPC = false;
                 UItext.SetActive(true);
                 LeavePC.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
         }
     }
