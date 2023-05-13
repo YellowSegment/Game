@@ -8,9 +8,11 @@ public class Money : MonoBehaviour
 {
     public double money;
     public Text CurrencyUI;
+    public GameObject MoneyUI;
     // Start is called before the first frame update
     void Start()
     {
+        MoneyUI.SetActive(true);
         money = 20.00;
         CurrencyUI.text = "$" + money;
     }
