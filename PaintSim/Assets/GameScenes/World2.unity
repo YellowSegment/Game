@@ -2728,12 +2728,12 @@ Transform:
   - {fileID: 1551773828}
   - {fileID: 997029376}
   - {fileID: 1779963509}
+  - {fileID: 1674187742}
   - {fileID: 1938414582}
   - {fileID: 1621016838}
-  - {fileID: 122563854}
-  - {fileID: 1674187742}
   - {fileID: 714891715}
   - {fileID: 1865423822}
+  - {fileID: 122563854}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12459,7 +12459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e49e5f32f7bddf743b8a795c90796f75, type: 2}
+  - {fileID: 2100000, guid: 31fc4a9f5b3b5db43b9b4dbc7b729a49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
