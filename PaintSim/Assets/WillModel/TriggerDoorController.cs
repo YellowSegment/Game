@@ -4,31 +4,55 @@ using UnityEngine;
 
 public class TriggerDoorController : MonoBehaviour
 {
-    [SerializeField] private Animator myDoor = null;
-    [SerializeField] private bool openTrigger = false;
-    private bool isDoorOpen = false;
+    public Animator myDoor;
+    public bool isDoorOpen;
+    public bool interactable;
+    public float delay = 3;
+    private float timer;
 
-    private void OnTriggerEnter(Collider other)
+    void Start()
+    {
+        interactable = false;
+        myDoor.SetBool("DoorOpen", false);
+        myDoor.SetBool("DoorClose", false);
+        isDoorOpen = false;
+    }
+
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (openTrigger && !isDoorOpen)
-            {
-                myDoor.Play("DoorOpen", 0, 0.0f);
-                isDoorOpen = true;
-            }
+            interactable = true;
         }
     } 
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (openTrigger && isDoorOpen)
+            interactable = false;
+        }
+    } 
+
+    void Update()
+    {
+        if (interactable && Input.GetKeyDown(KeyCode.E))
+        {
+            myDoor.SetBool("DoorOpen", true);
+            myDoor.SetBool("DoorClose", false);
+            isDoorOpen = true;
+            timer = 0;
+        }
+
+        if (!interactable)
+        {
+            timer += Time.deltaTime;
+            if (timer > delay)
             {
-                myDoor.Play("DoorClose", 0, 0.0f);
+                myDoor.SetBool("DoorClose", true);
+                myDoor.SetBool("DoorOpen", false);
                 isDoorOpen = false;
             }
         }
-    } 
+    }
 }
