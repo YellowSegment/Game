@@ -9,6 +9,7 @@ public class TriggerDoorController : MonoBehaviour
     public bool interactable;
     public float delay = 3;
     private float timer;
+    public BoxCollider doorCollider;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class TriggerDoorController : MonoBehaviour
         myDoor.SetBool("DoorOpen", false);
         myDoor.SetBool("DoorClose", false);
         isDoorOpen = false;
+        doorCollider.enabled = true;
     }
 
     void OnTriggerStay(Collider other)
@@ -42,6 +44,7 @@ public class TriggerDoorController : MonoBehaviour
             myDoor.SetBool("DoorClose", false);
             isDoorOpen = true;
             timer = 0;
+            doorCollider.enabled = false;
         }
 
         if (!interactable)
@@ -52,6 +55,7 @@ public class TriggerDoorController : MonoBehaviour
                 myDoor.SetBool("DoorClose", true);
                 myDoor.SetBool("DoorOpen", false);
                 isDoorOpen = false;
+                doorCollider.enabled = true;
             }
         }
     }

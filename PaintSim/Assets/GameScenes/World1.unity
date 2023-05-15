@@ -1201,6 +1201,7 @@ MonoBehaviour:
   isDoorOpen: 0
   interactable: 0
   delay: 3
+  doorCollider: {fileID: 134962939}
 --- !u!65 &134962939
 BoxCollider:
   m_ObjectHideFlags: 0
