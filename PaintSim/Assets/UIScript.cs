@@ -32,8 +32,11 @@ public class UIScript : MonoBehaviour
         SettingsMenu.SetActive(false);
          MainMenu.SetActive(true);
     }
-   void update()
+   void Update()
    {
-    
+        if (SettingsOpen && Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseSettings();
+        }
    }
 }
