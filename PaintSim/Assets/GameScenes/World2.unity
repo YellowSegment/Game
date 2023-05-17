@@ -12553,6 +12553,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61b7bd70ed1dda46b43f0bd08e877c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RadiantWeb: {fileID: 0}
+  desktopUi: {fileID: 0}
+  FauxPropertiesWeb: {fileID: 0}
+  PigmentPeddlerWeb: {fileID: 0}
+  DoodadEmporiumWeb: {fileID: 0}
+  InaccuSmartWeb: {fileID: 0}
 --- !u!1 &1410960766
 GameObject:
   m_ObjectHideFlags: 0
