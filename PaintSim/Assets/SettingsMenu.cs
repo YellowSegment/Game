@@ -21,7 +21,7 @@ public class SettingsMenu : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            string option = resolutions[i].width + " x " + resolutions[i].height + " @" + resolutions[i].refreshRate + "Hz";
             options.Add(new TMP_Dropdown.OptionData(option));
 
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
@@ -34,6 +34,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
+
 
     public void SetMusicVolume(float volume)
     {
@@ -56,9 +57,9 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void SetMaxFps()
+    public void SetMaxFps(int maxFps)
     {
-        // Implement maximum FPS setting
+        Application.targetFrameRate = maxFps;
     }
 
     public void SetAutoSaveFrequency()
