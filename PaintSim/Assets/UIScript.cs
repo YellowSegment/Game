@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 
 
@@ -12,8 +13,13 @@ public class UIScript : MonoBehaviour
     public GameObject Credits;
     private bool SettingsOpen = false;
     [SerializeField] private string NewGameLevel = "World1";
+    public AudioMixer MusicVolume;
 
 
+    public void Start()
+    {
+        MusicVolume.SetFloat("MusicVolume", -25);
+    }
     public void NewGameButton()
     {
         SceneManager.LoadScene(NewGameLevel);

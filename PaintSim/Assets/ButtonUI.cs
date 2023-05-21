@@ -27,4 +27,10 @@ public class ButtonUI : MonoBehaviour
         desktopUi.SetActive(false);
         RadiantWeb.SetActive(true);
     }
+
+    public void leaveRadiant()
+    {
+        RadiantWeb.SetActive(false);
+        desktopUi.SetActive(true);
+    }
 }
