@@ -18,13 +18,16 @@ public class PlayerPickupDrop : MonoBehaviour
         {
             if (objectGrabable == null)
             {
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit RaycastHit, pickupDistance))
+                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit, pickupDistance))
+                {
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("AllowPickup"))
                     {
-                        if(RaycastHit.transform.TryGetComponent(out objectGrabable))
+                        if (hit.transform.TryGetComponent(out objectGrabable))
                         {
                             objectGrabable.Grab(ObjectGrabPointTransform);
                         }
                     }
+                }
             }
             else
             {
@@ -32,6 +35,5 @@ public class PlayerPickupDrop : MonoBehaviour
                 objectGrabable = null;
             }
         }
-        
     }
 }
