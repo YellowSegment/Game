@@ -10,6 +10,7 @@ public class ButtonUI : MonoBehaviour
     public GameObject PigmentPeddlerWeb;
     public GameObject DoodadEmporiumWeb;
     public GameObject InaccuSmartWeb;
+    public InventoryManager inventoryManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +33,34 @@ public class ButtonUI : MonoBehaviour
     {
         RadiantWeb.SetActive(false);
         desktopUi.SetActive(true);
+    }
+
+    public void buyWhiteBase()
+    {
+        inventoryManager.addWhiteInventory();
+    }
+    public void buyMidBase()
+    {
+        inventoryManager.addMidInventory();
+    }
+    public void buyDeepBase()
+    {
+        inventoryManager.addDeepInventory();
+    }
+    public void buyStirSticks()
+    {
+        inventoryManager.addStirSticks();
+    }
+    public void buyRedTint()
+    {
+        inventoryManager.addRedTint();
+    }
+    public void buyGreenTint()
+    {
+        inventoryManager.addGreenTint();
+    }
+    public void buyBlueTint()
+    {
+        inventoryManager.addBlueTint();
     }
 }

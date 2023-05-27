@@ -5,7 +5,7 @@ using Unity.UI;
 
 public class PaintCanPlace : MonoBehaviour
 {
-    public GameObject paintCan;
+    public GameObject[] paintCans;  // Array of possible paint cans
     public GameObject paintCanPlacementWorkbench1;
     // public GameObject paintCanPlacementWorkbench2a;
     // public GameObject paintCanPlacementWorkbench2b;
@@ -16,7 +16,7 @@ public class PaintCanPlace : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == paintCan)
+        if (IsPaintCan(other.gameObject))
         {
             isPaintCan = true;
             promptUI.SetActive(true);
@@ -25,7 +25,7 @@ public class PaintCanPlace : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == paintCan)
+        if (IsPaintCan(other.gameObject))
         {
             isPaintCan = false;
             promptUI.SetActive(false);
@@ -49,33 +49,43 @@ public class PaintCanPlace : MonoBehaviour
 
     private void MovePaintCan()
     {
-        
         if (!isPaintPlaced)
         {
             promptUI.SetActive(false);
-            ObjectGrabable grabbable = paintCan.GetComponent<ObjectGrabable>();
+            ObjectGrabable grabbable = paintCans[0].GetComponent<ObjectGrabable>();
             if (grabbable != null)
             {
                 grabbable.Drop();
             }
-            paintCan.transform.position = paintCanPlacementWorkbench1.transform.position;
-            paintCan.transform.rotation = paintCanPlacementWorkbench1.transform.rotation;
+            paintCans[0].transform.position = paintCanPlacementWorkbench1.transform.position;
+            paintCans[0].transform.rotation = paintCanPlacementWorkbench1.transform.rotation;
             isPaintPlaced = true;
-            paintCan.layer = 0;
+            paintCans[0].layer = 0;
         }
         else
         {
             if (Input.GetMouseButton(0))
             {
-                ObjectGrabable grabbable = paintCan.GetComponent<ObjectGrabable>();
+                ObjectGrabable grabbable = paintCans[0].GetComponent<ObjectGrabable>();
                 if (grabbable != null)
                 { 
                     grabbable.Grab(grabPoint.transform);
                     isPaintPlaced = false;
-                    paintCan.layer = 7;
-
+                    paintCans[0].layer = 7;
                 }
             }
         }
+    }
+
+    private bool IsPaintCan(GameObject obj)
+    {
+        foreach (GameObject paintCan in paintCans)
+        {
+            if (obj == paintCan)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
