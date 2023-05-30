@@ -10,6 +10,10 @@ public class PaintCanPlace : MonoBehaviour
     public bool isPaintPlaced;
     public GameObject grabPoint;
     public bool canPickup;
+    public GameObject playerCam;
+    public GameObject paintTintCam;
+    public GameObject crosshair;
+    public GameObject closedUI;
 
     private GameObject objectToPlace;  // The object you want to place
 
@@ -44,6 +48,7 @@ public class PaintCanPlace : MonoBehaviour
     {
         promptUI.SetActive(false);
         isPaintPlaced = false;
+        paintTintCam.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,6 +73,10 @@ public class PaintCanPlace : MonoBehaviour
             {
                 grabbable.Drop();
             }
+            playerCam.SetActive(false);
+            paintTintCam.SetActive(true);
+            crosshair.SetActive(false);
+            closedUI.SetActive(true);
             objectToPlace.transform.position = paintCanPlacementWorkbench1.transform.position;
             objectToPlace.transform.rotation = paintCanPlacementWorkbench1.transform.rotation;
             Rigidbody rb = objectToPlace.GetComponent<Rigidbody>();
@@ -81,6 +90,9 @@ public class PaintCanPlace : MonoBehaviour
     {
         if(isPaintPlaced && canPickup && objectToPlace.layer != 14)
         {
+            playerCam.SetActive(true);
+            paintTintCam.SetActive(false);
+            crosshair.SetActive(true);
             Rigidbody rb = objectToPlace.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             isPaintPlaced = false;
@@ -91,6 +103,7 @@ public class PaintCanPlace : MonoBehaviour
             }
             objectToPlace.layer = 7;  // Assuming 12 is the desired layer index
             canPickup = false;
+            closedUI.SetActive(false);
         }
     }
 

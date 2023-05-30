@@ -8,6 +8,8 @@ public class PaintCanAnimatorController : MonoBehaviour
     public bool isCanOpen;
     public bool canOpen;
     private PaintCanPlace paintCanPlaceScript;
+    public GameObject openUI;
+    public GameObject closedUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,8 @@ public class PaintCanAnimatorController : MonoBehaviour
             isCanOpen = true;
             Debug.Log("Opening can");
             paintCanPlaceScript.changeLayer(true);
+            openUI.SetActive(true);
+            closedUI.SetActive(false);
             
         }
         else if (Input.GetMouseButtonDown(0) && isCanOpen && gameObject.layer == 14 && canOpen)
@@ -34,6 +38,8 @@ public class PaintCanAnimatorController : MonoBehaviour
             isCanOpen = false;
             Debug.Log("Closing Can");
             paintCanPlaceScript.changeLayer(false);
+            openUI.SetActive(false);
+            closedUI.SetActive(true);
         }
     }
 
