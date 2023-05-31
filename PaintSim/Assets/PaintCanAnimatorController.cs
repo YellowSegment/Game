@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PaintCanAnimatorController : MonoBehaviour
 {
@@ -10,13 +11,21 @@ public class PaintCanAnimatorController : MonoBehaviour
     private PaintCanPlace paintCanPlaceScript;
     public GameObject openUI;
     public GameObject closedUI;
+    private TintChoiceController tintController;
+    public GameObject tintUI;
+
     // Start is called before the first frame update
     void Start()
     {
         paintCan.SetBool("PaintCanOpen", false);
         isCanOpen = false;
+
         GameObject paintCanPlaceObject = GameObject.Find("Workbench1"); // Replace with the actual name of the GameObject
         paintCanPlaceScript = paintCanPlaceObject.GetComponent<PaintCanPlace>();
+
+        tintController = tintUI.GetComponent<TintChoiceController>();
+
+        openUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,7 +39,7 @@ public class PaintCanAnimatorController : MonoBehaviour
             paintCanPlaceScript.changeLayer(true);
             openUI.SetActive(true);
             closedUI.SetActive(false);
-            
+            tintController.SelectRedTint();
         }
         else if (Input.GetMouseButtonDown(0) && isCanOpen && gameObject.layer == 14 && canOpen)
         {
@@ -47,6 +56,7 @@ public class PaintCanAnimatorController : MonoBehaviour
     {
         canOpen = true;
     }
+
     private void OnTriggerExit(Collider other)
     {
         canOpen = false;

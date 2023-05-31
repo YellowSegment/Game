@@ -49,6 +49,7 @@ public class PaintCanPlace : MonoBehaviour
         promptUI.SetActive(false);
         isPaintPlaced = false;
         paintTintCam.SetActive(false);
+        closedUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -84,6 +85,7 @@ public class PaintCanPlace : MonoBehaviour
             isPaintPlaced = true;
             promptUI.SetActive(false);
             objectToPlace.layer = 12;  // Assuming 12 is the desired layer index
+            canPickup = true;
         }
     }
     private void Pickup()
