@@ -41,7 +41,7 @@ public class PaintCanAnimatorController : MonoBehaviour
             closedUI.SetActive(false);
             tintController.SelectRedTint();
         }
-        else if (Input.GetMouseButtonDown(0) && isCanOpen && gameObject.layer == 14 && canOpen)
+        else if (Input.GetKeyDown(KeyCode.E) && isCanOpen && gameObject.layer == 14 && canOpen)
         {
             paintCan.SetBool("PaintCanOpen", false);
             isCanOpen = false;

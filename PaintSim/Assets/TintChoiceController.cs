@@ -10,14 +10,24 @@ public class TintChoiceController : MonoBehaviour
     public Button blueTintController;
 
     private ColorBlock normalColorBlock; // Stores the normal color of the buttons
+    private Color normalColor; // Stores the normal color of the UI buttons
+    private Color selectedColor; // Stores the selected color of the UI buttons
 
     private void Start()
     {
         normalColorBlock = redTintController.colors; // Store the normal color of the buttons
 
+        normalColor = new Color(118f / 255f, 118f / 255f, 118f / 255f); // Set the normal color to RGB (118, 118, 118)
+        selectedColor = redTintController.colors.selectedColor; // Store the selected color of the UI buttons
+
         redTintController.onClick.AddListener(SelectRedTint);
         greenTintController.onClick.AddListener(SelectGreenTint);
         blueTintController.onClick.AddListener(SelectBlueTint);
+
+        // Set the initial normal color of the buttons
+        SetButtonColors(redTintController, normalColor);
+        SetButtonColors(greenTintController, normalColor);
+        SetButtonColors(blueTintController, normalColor);
     }
 
     private void Update()
@@ -41,7 +51,7 @@ public class TintChoiceController : MonoBehaviour
         Debug.Log("Red");
 
         // Change the colors of the buttons
-        SetButtonColors(redTintController.colors.selectedColor);
+        SetButtonColors(redTintController, selectedColor);
         ResetButtonColorsExcept(redTintController);
     }
 
@@ -50,7 +60,7 @@ public class TintChoiceController : MonoBehaviour
         Debug.Log("Green");
 
         // Change the colors of the buttons
-        SetButtonColors(greenTintController.colors.selectedColor);
+        SetButtonColors(greenTintController, selectedColor);
         ResetButtonColorsExcept(greenTintController);
     }
 
@@ -59,40 +69,32 @@ public class TintChoiceController : MonoBehaviour
         Debug.Log("Blue");
 
         // Change the colors of the buttons
-        SetButtonColors(blueTintController.colors.selectedColor);
+        SetButtonColors(blueTintController, selectedColor);
         ResetButtonColorsExcept(blueTintController);
     }
 
-    private void SetButtonColors(Color color)
+    private void SetButtonColors(Button button, Color color)
     {
-        // Modify the ColorBlock of each button to set the selected color
-        ColorBlock colorBlock = redTintController.colors;
+        // Modify the ColorBlock of the button to set the selected color
+        ColorBlock colorBlock = button.colors;
         colorBlock.normalColor = color;
-        colorBlock.highlightedColor = color;
-        colorBlock.pressedColor = color;
-        redTintController.colors = colorBlock;
-
-        colorBlock = greenTintController.colors;
-        colorBlock.normalColor = color;
-        colorBlock.highlightedColor = color;
-        colorBlock.pressedColor = color;
-        greenTintController.colors = colorBlock;
-
-        colorBlock = blueTintController.colors;
-        colorBlock.normalColor = color;
-        colorBlock.highlightedColor = color;
-        colorBlock.pressedColor = color;
-        blueTintController.colors = colorBlock;
+        button.colors = colorBlock;
     }
 
     private void ResetButtonColorsExcept(Button button)
     {
         // Reset the colors of buttons other than the selected one to the normal color
         if (button != redTintController)
-            redTintController.colors = normalColorBlock;
+        {
+            SetButtonColors(redTintController, normalColor);
+        }
         if (button != greenTintController)
-            greenTintController.colors = normalColorBlock;
+        {
+            SetButtonColors(greenTintController, normalColor);
+        }
         if (button != blueTintController)
-            blueTintController.colors = normalColorBlock;
+        {
+            SetButtonColors(blueTintController, normalColor);
+        }
     }
 }

@@ -16,12 +16,18 @@ public class InventoryManager : MonoBehaviour
     public int maxTintCans;
     public int tintCanTotal;
     public int totalStirSticks;
+    public int totalRedTint;
+    public int totalGreenTint;
+    public int totalBlueTint;
    
 
     void Start()
     {
         this.paintCanTotal = whiteInventory+midInventory+deepInventory;
         this.tintCanTotal = redStock+greenStock+blueStock;
+        totalRedTint = 0;
+        totalBlueTint = 0;
+        totalGreenTint = 0;
     }
 
     void Update()
@@ -74,6 +80,7 @@ public class InventoryManager : MonoBehaviour
         {
             redStock++;
             tintCanTotal++;
+            totalRedTint += 255;
         }
         else
         {
@@ -86,6 +93,7 @@ public class InventoryManager : MonoBehaviour
         {
             greenStock++;
             tintCanTotal++;
+            totalGreenTint += 255;
         }
         else
         {
@@ -98,6 +106,7 @@ public class InventoryManager : MonoBehaviour
         {
             blueStock++;
             tintCanTotal++;
+            totalBlueTint += 255;
         }
         else
         {
@@ -131,6 +140,19 @@ public class InventoryManager : MonoBehaviour
     public void addStirSticks()
     {
         totalStirSticks+=10;
+    }
+
+    public void removeRedTint(int tintUsed)
+    {
+        totalRedTint -= tintUsed;
+    }
+    public void removeBlueTint(int tintUsed)
+    {
+        totalBlueTint -= tintUsed;
+    }
+    public void removeGreenTint(int tintUsed)
+    {
+        totalGreenTint -= tintUsed;
     }
 
 }
