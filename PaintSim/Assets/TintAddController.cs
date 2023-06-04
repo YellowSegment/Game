@@ -24,6 +24,7 @@ public class TintAddController : MonoBehaviour
     private GameObject paintCanTinting;
     public bool gotPaintCan;
     private PaintCanAnimatorController paintCanAnimatorController;
+    private PaintMixer paintMixer;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class TintAddController : MonoBehaviour
         paintCanPlaceScript = paintCanPlaceObject.GetComponent<PaintCanPlace>(); // Assign the reference here
         canIsOpen = false;
         paintCanAnimatorController = null;
+        paintMixer = null;
     }
 
     void Update()
@@ -44,6 +46,7 @@ public class TintAddController : MonoBehaviour
         {
             paintCanTinting = paintCanPlaceScript.getPaintCan();
             paintCanAnimatorController = paintCanTinting.GetComponent<PaintCanAnimatorController>();
+            paintMixer = paintCanTinting.GetComponent<PaintMixer>();
             gotPaintCan = true;
             count++;
             totalRedTint = paintCanAnimatorController.getTotalRedTintInCan();
@@ -71,6 +74,10 @@ public class TintAddController : MonoBehaviour
             paintCanAnimatorController.setTotalTintsInCan(totalRedTint, totalGreenTint, totalBlueTint);
             count = 0;
             gotPaintCan = false;
+        }
+        if (canIsOpen && gotPaintCan && Input.GetKeyDown(KeyCode.R))
+        {
+            paintMixer.MixPaint(255-totalRedTint, 255-totalGreenTint, 255-totalBlueTint);
         }
         if(paintCanPlaceScript.GetIsPaintPlaced() && canIsOpen)
         {
