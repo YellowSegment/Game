@@ -2,12 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TintChoiceController : MonoBehaviour
 {
     public Button redTintController;
     public Button greenTintController;
     public Button blueTintController;
+    
+    public Text fastPourText;
+
+    public bool fastPour;
+    public bool isRed;
+    public bool isGreen;
+    public bool isBlue;
+
+
+
 
     private ColorBlock normalColorBlock; // Stores the normal color of the buttons
     private Color normalColor; // Stores the normal color of the UI buttons
@@ -15,6 +26,7 @@ public class TintChoiceController : MonoBehaviour
 
     private void Start()
     {
+        fastPour = true;
         normalColorBlock = redTintController.colors; // Store the normal color of the buttons
 
         normalColor = new Color(118f / 255f, 118f / 255f, 118f / 255f); // Set the normal color to RGB (118, 118, 118)
@@ -23,15 +35,19 @@ public class TintChoiceController : MonoBehaviour
         redTintController.onClick.AddListener(SelectRedTint);
         greenTintController.onClick.AddListener(SelectGreenTint);
         blueTintController.onClick.AddListener(SelectBlueTint);
-
         // Set the initial normal color of the buttons
         SetButtonColors(redTintController, normalColor);
         SetButtonColors(greenTintController, normalColor);
         SetButtonColors(blueTintController, normalColor);
+        SelectRedTint();
     }
 
     private void Update()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            changeFastPour();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SelectRedTint();
@@ -46,6 +62,19 @@ public class TintChoiceController : MonoBehaviour
         }
     }
 
+    public void changeFastPour()
+    {
+        if (fastPour == true)
+        {
+            fastPour = false;
+            fastPourText.text = "Fast Pour OFF";
+        }
+        else 
+        {
+            fastPour = true;
+            fastPourText.text = "Fast Pour ON";
+        }
+    }
     public void SelectRedTint()
     {
         Debug.Log("Red");
@@ -96,5 +125,23 @@ public class TintChoiceController : MonoBehaviour
         {
             SetButtonColors(blueTintController, normalColor);
         }
+    }
+
+
+    public bool GetIsRed()
+    {
+        return isRed;
+    }
+    public bool GetIsGreen()
+    {
+        return isGreen;
+    }
+    public bool GetIsBlue()
+    {
+        return isBlue;
+    }
+    public bool GetIsFastPour()
+    {
+        return fastPour;
     }
 }

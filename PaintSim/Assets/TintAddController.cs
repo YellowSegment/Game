@@ -8,6 +8,7 @@ public class TintAddController : MonoBehaviour
     public int totalGreenTint;
     public int totalBlueTint;
     public bool slowPour;
+    private TintChoiceController tintChoiceController;
 
     private float timer;
 
@@ -15,13 +16,17 @@ public class TintAddController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (slowPour)
+            if (!tintChoiceController.GetIsFastPour())
             {
                 timer += Time.deltaTime; // Increment the timer with the elapsed time
                 if (timer >= pourRateSlow)
                 {
-                    totalRedTint++; // Increment totalRedTint by 1
-                    timer = 0f; // Reset the timer
+                    if(tintChoiceController.GetIsRed())
+                    {
+                        totalRedTint++; // Increment totalRedTint by 1
+                        timer = 0f; // Reset the timer
+                    }
+                    
                 }
             }
             else
@@ -35,10 +40,5 @@ public class TintAddController : MonoBehaviour
                 
             }
         }
-    }
-
-    public void pourRedTint()
-    {
-        
     }
 }
