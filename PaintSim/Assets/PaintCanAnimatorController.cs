@@ -61,4 +61,9 @@ public class PaintCanAnimatorController : MonoBehaviour
     {
         canOpen = false;
     }
+
+    public bool GetIsCanOpen()
+    {
+        return canOpen;
+    }
 }

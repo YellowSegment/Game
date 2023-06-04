@@ -25,9 +25,6 @@ public class InventoryManager : MonoBehaviour
     {
         this.paintCanTotal = whiteInventory+midInventory+deepInventory;
         this.tintCanTotal = redStock+greenStock+blueStock;
-        totalRedTint = 0;
-        totalBlueTint = 0;
-        totalGreenTint = 0;
     }
 
     void Update()
@@ -153,6 +150,19 @@ public class InventoryManager : MonoBehaviour
     public void removeGreenTint(int tintUsed)
     {
         totalGreenTint -= tintUsed;
+    }
+
+    public int getRedTint()
+    {
+        return totalRedTint;
+    }
+    public int getGreenTint()
+    {
+        return totalGreenTint;
+    }
+    public int getBlueTint()
+    {
+        return totalBlueTint;
     }
 
 }

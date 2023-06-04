@@ -18782,7 +18782,7 @@ MonoBehaviour:
 
     [E] to close can
 
-    [Left
+    [Right
     Click] to pour the tint
 
     [R] to begin stiring'
@@ -22184,7 +22184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674019304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.672, y: 1.154, z: -9.453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22209,6 +22209,9 @@ MonoBehaviour:
   totalGreenTint: 0
   totalBlueTint: 0
   slowPour: 0
+  tintChoiceObject: {fileID: 1457640552}
+  inventoryManagerObject: {fileID: 1968160207}
+  paintCanPlaceObject: {fileID: 683262293}
 --- !u!1001 &1685964040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25917,17 +25920,17 @@ MonoBehaviour:
   midInventory: 0
   deepInventory: 0
   stickInventory: 0
-  redStock: 0
-  greenStock: 0
-  blueStock: 0
+  redStock: 1
+  greenStock: 1
+  blueStock: 1
   maxPaintCans: 3
   paintCanTotal: 0
-  maxTintCans: 0
+  maxTintCans: 3
   tintCanTotal: 0
   totalStirSticks: 0
-  totalRedTint: 0
-  totalGreenTint: 0
-  totalBlueTint: 0
+  totalRedTint: 255
+  totalGreenTint: 255
+  totalBlueTint: 255
 --- !u!4 &1968160209
 Transform:
   m_ObjectHideFlags: 0

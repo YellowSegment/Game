@@ -51,6 +51,10 @@ public class PaintCanPlace : MonoBehaviour
         paintTintCam.SetActive(false);
         closedUI.SetActive(false);
     }
+    public bool GetIsPaintPlaced()
+    {
+        return isPaintPlaced;
+    }
 
     // Update is called once per frame
     void Update()

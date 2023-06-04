@@ -9,36 +9,91 @@ public class TintAddController : MonoBehaviour
     public int totalBlueTint;
     public bool slowPour;
     private TintChoiceController tintChoiceController;
-
+    private InventoryManager inventoryManager;
+    public GameObject tintChoiceObject;
+    public GameObject inventoryManagerObject;
     private float timer;
+    public GameObject paintCanPlaceObject;
+    private PaintCanPlace paintCanPlaceScript;
+
+
+    void Start()
+    {
+        tintChoiceController = tintChoiceObject.GetComponent<TintChoiceController>();
+        inventoryManager = inventoryManagerObject.GetComponent<InventoryManager>();
+        paintCanPlaceScript = paintCanPlaceObject.GetComponent<PaintCanPlace>(); // Assign the reference here
+    }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            if (!tintChoiceController.GetIsFastPour())
+            if (Input.GetMouseButton(1))
             {
-                timer += Time.deltaTime; // Increment the timer with the elapsed time
-                if (timer >= pourRateSlow)
+                if (!tintChoiceController.GetIsFastPour())
                 {
-                    if(tintChoiceController.GetIsRed())
+                    timer += Time.deltaTime; // Increment the timer with the elapsed time
+                    if (timer >= pourRateSlow)
                     {
-                        totalRedTint++; // Increment totalRedTint by 1
-                        timer = 0f; // Reset the timer
+                        if (tintChoiceController.GetIsRed() && inventoryManager.getRedTint() > totalRedTint)
+                        {
+                            totalRedTint++; // Increment totalRedTint by 1
+                            timer = 0f; // Reset the timer
+                        }
+                        else if (tintChoiceController.GetIsBlue() && inventoryManager.getBlueTint() > totalBlueTint)
+                        {
+                            totalBlueTint++;
+                            timer = 0f;
+                        }
+                        else if (tintChoiceController.GetIsGreen() && inventoryManager.getGreenTint() > totalGreenTint)
+                        {
+                            totalGreenTint++;
+                            timer = 0f;
+                        }
                     }
-                    
                 }
-            }
-            else
-            {
-                timer += Time.deltaTime;
-                if (timer>= pourRateFast)
+                else
                 {
-                    totalRedTint++; // Increment totalRedTint by 1
-                    timer = 0f;
+                    timer += Time.deltaTime;
+                    if (timer >= pourRateFast)
+                    {
+                        if (tintChoiceController.GetIsRed())
+                        {
+                            if (inventoryManager.getRedTint() > totalRedTint)
+                            {
+                                totalRedTint++; // Increment totalRedTint by 1
+                                timer = 0f; // Reset the timer
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        else if (tintChoiceController.GetIsBlue())
+                        {
+                            if (inventoryManager.getBlueTint() > totalBlueTint)
+                            {
+                                totalBlueTint++;
+                                timer = 0f;
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        else if (tintChoiceController.GetIsGreen())
+                        {
+                            if (inventoryManager.getGreenTint() > totalGreenTint)
+                            {
+                                totalGreenTint++;
+                                timer = 0f;
+                                Debug.Log(inventoryManager.getGreenTint());
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
                 }
-                
             }
         }
-    }
 }
