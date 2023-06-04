@@ -85,7 +85,6 @@ public class TintChoiceController : MonoBehaviour
     }
     public void SelectRedTint()
     {
-        Debug.Log("Red");
 
         // Change the colors of the buttons
         SetButtonColors(redTintController, selectedColor);
@@ -94,7 +93,6 @@ public class TintChoiceController : MonoBehaviour
 
     public void SelectGreenTint()
     {
-        Debug.Log("Green");
 
         // Change the colors of the buttons
         SetButtonColors(greenTintController, selectedColor);
@@ -103,7 +101,6 @@ public class TintChoiceController : MonoBehaviour
 
     public void SelectBlueTint()
     {
-        Debug.Log("Blue");
 
         // Change the colors of the buttons
         SetButtonColors(blueTintController, selectedColor);

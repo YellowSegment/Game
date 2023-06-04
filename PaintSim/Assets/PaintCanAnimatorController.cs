@@ -13,6 +13,9 @@ public class PaintCanAnimatorController : MonoBehaviour
     public GameObject closedUI;
     private TintChoiceController tintController;
     public GameObject tintUI;
+    public int RedTintInCan;
+    public int BlueTintInCan;
+    public int GreenTintInCan;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +34,7 @@ public class PaintCanAnimatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isCanOpen && gameObject.layer == 12 && canOpen)
+        if (Input.GetMouseButtonDown(1) && !isCanOpen && gameObject.layer == 12 && canOpen)
         {
             paintCan.SetBool("PaintCanOpen", true);
             isCanOpen = true;
@@ -41,7 +44,7 @@ public class PaintCanAnimatorController : MonoBehaviour
             closedUI.SetActive(false);
             tintController.SelectRedTint();
         }
-        else if (Input.GetKeyDown(KeyCode.E) && isCanOpen && gameObject.layer == 14 && canOpen)
+        else if (Input.GetMouseButtonDown(1) && isCanOpen && gameObject.layer == 14 && canOpen)
         {
             paintCan.SetBool("PaintCanOpen", false);
             isCanOpen = false;
@@ -66,4 +69,26 @@ public class PaintCanAnimatorController : MonoBehaviour
     {
         return canOpen;
     }
+
+    public void setTotalTintsInCan(int red, int green, int blue)
+    {
+        this.RedTintInCan = red;
+        this.GreenTintInCan = green;
+        this.BlueTintInCan = blue;
+    }
+    public int getTotalRedTintInCan()
+    {
+        return RedTintInCan;
+    }
+    public int getTotalGreenTintInCan()
+    {
+        return GreenTintInCan;
+    }
+    public int getTotalBlueTintInCan()
+    {
+        return BlueTintInCan;
+    }
+
+
+
 }

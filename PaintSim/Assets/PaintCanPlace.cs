@@ -30,6 +30,11 @@ public class PaintCanPlace : MonoBehaviour
         } 
     }
 
+    public GameObject getPaintCan()
+    {
+        return objectToPlace;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("PaintCan") && !isPaintPlaced)
