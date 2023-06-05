@@ -60,6 +60,10 @@ public class PaintCanPlace : MonoBehaviour
     {
         return isPaintPlaced;
     }
+    public bool GetCanPickup()
+    {
+        return canPickup;
+    }
 
     // Update is called once per frame
     void Update()

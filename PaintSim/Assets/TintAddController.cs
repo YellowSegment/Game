@@ -77,7 +77,7 @@ public class TintAddController : MonoBehaviour
         }
         if (canIsOpen && gotPaintCan && Input.GetKeyDown(KeyCode.R))
         {
-            paintMixer.MixPaint(255-totalRedTint, 255-totalGreenTint, 255-totalBlueTint);
+            paintMixer.MixPaint(totalRedTint, totalGreenTint, totalBlueTint);
         }
         if(paintCanPlaceScript.GetIsPaintPlaced() && canIsOpen)
         {

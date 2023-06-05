@@ -1891,7 +1891,7 @@ PrefabInstance:
     - target: {fileID: 7202271454713460447, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
+      objectReference: {fileID: 2100000, guid: c9bb385a9ec81ff4cad004526f74a863, type: 2}
     - target: {fileID: 8513859187771203891, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1930,6 +1930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
+  PaintCanPlaceObject: {fileID: 0}
 --- !u!114 &133478407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7803,7 +7804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2484921068739079471, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.001
+      value: 1.004
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
       propertyPath: m_Name
@@ -7820,7 +7821,7 @@ PrefabInstance:
     - target: {fileID: 7202271454713460447, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
+      objectReference: {fileID: 2100000, guid: 6600ee139f13464448010090ff07e2ec, type: 2}
     - target: {fileID: 8513859187771203891, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -7859,6 +7860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
+  PaintCanPlaceObject: {fileID: 0}
 --- !u!114 &585211094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16758,6 +16760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
+  PaintCanPlaceObject: {fileID: 0}
 --- !u!1 &1242618045
 GameObject:
   m_ObjectHideFlags: 0
@@ -18989,7 +18992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1445161663
 Transform:
   m_ObjectHideFlags: 0
