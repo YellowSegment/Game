@@ -2045,30 +2045,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
   m_PrefabInstance: {fileID: 133478402}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &133478404 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5568371526223589888, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
-  m_PrefabInstance: {fileID: 133478402}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &133478405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
   m_PrefabInstance: {fileID: 133478402}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &133478406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133478404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa8d2d079049de4cbcbcc7d453b6da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
-  PaintCanPlaceObject: {fileID: 0}
 --- !u!114 &133478407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2165,6 +2146,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &133478413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133478405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa8d2d079049de4cbcbcc7d453b6da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
+  PaintCanPlaceObject: {fileID: 683262293}
 --- !u!1 &134962933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c5fd249adf441342af1270d99e16fd1, type: 3}
@@ -8312,30 +8307,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
   m_PrefabInstance: {fileID: 585211089}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &585211091 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5568371526223589888, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
-  m_PrefabInstance: {fileID: 585211089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &585211092 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0dfe3b665960df9468e86854e3412fb0, type: 3}
   m_PrefabInstance: {fileID: 585211089}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &585211093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585211091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa8d2d079049de4cbcbcc7d453b6da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
-  PaintCanPlaceObject: {fileID: 0}
 --- !u!114 &585211094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8432,6 +8408,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &585211100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585211092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa8d2d079049de4cbcbcc7d453b6da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
+  PaintCanPlaceObject: {fileID: 683262293}
 --- !u!1 &599859096
 GameObject:
   m_ObjectHideFlags: 0
@@ -10485,6 +10475,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9ac231ef21a59ed4690869a5c7042e06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267724609816465728, guid: 9ac231ef21a59ed4690869a5c7042e06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.627
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9ac231ef21a59ed4690869a5c7042e06, type: 3}
       propertyPath: m_Name
@@ -17609,7 +17603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintMaterial: {fileID: 2100000, guid: ff8d696e24679b545931e48f4115cd63, type: 2}
-  PaintCanPlaceObject: {fileID: 0}
+  PaintCanPlaceObject: {fileID: 683262293}
 --- !u!1 &1242618045
 GameObject:
   m_ObjectHideFlags: 0
