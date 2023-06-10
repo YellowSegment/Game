@@ -9,17 +9,13 @@ public class Chair : MonoBehaviour
     public GameObject UItext;
     public GameObject Desktop;
     public GameObject LeavePC;
-    public GameObject RadientUI;
-    public GameObject PigmentPeddlerUI;
-    public GameObject InaccusmartUI;
-    public GameObject FauxPropertiesUI;
-    public GameObject DoodadEmpUI;
     public Camera standingCamera;
     public Camera sittingCamera;
     public bool interactable;
     public bool sitting;
     public bool onPC;
-
+    private ButtonUI buttonUI;
+    public GameObject buttonUiGameObject;
     void Start()
     {
         // Initialize variables
@@ -28,7 +24,7 @@ public class Chair : MonoBehaviour
         UItext.SetActive(false);
         Desktop.SetActive(false);
         onPC = false;
-
+        buttonUI = buttonUiGameObject.GetComponent<ButtonUI>();
         // Set standing camera to main camera if not assigned
         if (standingCamera == null)
         {
@@ -129,7 +125,7 @@ public class Chair : MonoBehaviour
                 Cursor.visible = true;
             }
 
-            if (onPC && Input.GetKeyDown(KeyCode.Escape))
+            if (onPC && Input.GetKeyDown(KeyCode.Escape) && !buttonUI.getOnSite())
             {
                 Desktop.SetActive(false);
                 onPC = false;

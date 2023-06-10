@@ -11,6 +11,7 @@ public class ButtonUI : MonoBehaviour
     public GameObject DoodadEmporiumWeb;
     public GameObject InaccuSmartWeb;
     public InventoryManager inventoryManager;
+    private bool onWebsite;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +21,43 @@ public class ButtonUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (onWebsite && Input.GetKeyDown(KeyCode.Escape))
+        {
+            desktopUi.SetActive(true);
+            RadiantWeb.SetActive(false);
+            DoodadEmporiumWeb.SetActive(false);
+            FauxPropertiesWeb.SetActive(false);
+            PigmentPeddlerWeb.SetActive(false);
+            InaccuSmartWeb.SetActive(false);
+            onWebsite = false;
+        }
     }
 
     public void radiantClick()
     {
         desktopUi.SetActive(false);
         RadiantWeb.SetActive(true);
+        onWebsite = true;
     }
 
     public void leaveRadiant()
     {
         RadiantWeb.SetActive(false);
         desktopUi.SetActive(true);
+        onWebsite = false;
+    }
+
+    public void leaveDooDad()
+    {
+        DoodadEmporiumWeb.SetActive(false);
+        desktopUi.SetActive(true);
+        onWebsite = false;
+    }
+    public void doodadClick()
+    {
+        desktopUi.SetActive(false);
+        DoodadEmporiumWeb.SetActive(true);
+        onWebsite = true;
     }
 
     public void buyWhiteBase()
@@ -62,5 +87,10 @@ public class ButtonUI : MonoBehaviour
     public void buyBlueTint()
     {
         inventoryManager.addBlueTint();
+    }
+
+    public bool getOnSite()
+    {
+        return onWebsite;
     }
 }
