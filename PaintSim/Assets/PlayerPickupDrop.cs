@@ -20,7 +20,7 @@ public class PlayerPickupDrop : MonoBehaviour
             {
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit hit, pickupDistance))
                 {
-                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("AllowPickup"))
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("AllowPickup") || hit.transform.gameObject.layer == LayerMask.NameToLayer("PaintCan"))
                     {
                         if (hit.transform.TryGetComponent(out objectGrabable))
                         {

@@ -10,9 +10,15 @@ public class PaintMixer : MonoBehaviour
     // Start is called before the first frame update
     private GameObject paintCanMaterial;
     private int count;
+    private int redTint;
+    private int greenTint;
+    private int blueTint;
 
     public void MixPaint(int red, int green, int blue)
     {
+        redTint = red;
+        greenTint = green;
+        blueTint = blue;
         float redAmount = red / 255f;
         float greenAmount = green / 255f;
         float blueAmount = blue / 255f;
@@ -49,5 +55,18 @@ public class PaintMixer : MonoBehaviour
         {
             count = 0;
         }
+    }
+
+    public int getRedTintAmount()
+    {
+        return redTint;
+    }
+    public int getGreenTintAmount()
+    {
+        return greenTint;
+    }
+    public int getBlueTintAmount()
+    {
+        return blueTint;
     }
 }
