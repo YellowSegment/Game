@@ -17582,7 +17582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1175885030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22356,6 +22356,7 @@ Transform:
   - {fileID: 1185679161}
   - {fileID: 1445161663}
   - {fileID: 144089631}
+  - {fileID: 1918002156}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27829,9 +27830,6 @@ GameObject:
   - component: {fileID: 1908363362}
   - component: {fileID: 1908363361}
   - component: {fileID: 1908363367}
-  - component: {fileID: 1908363368}
-  - component: {fileID: 1908363370}
-  - component: {fileID: 1908363369}
   - component: {fileID: 1908363371}
   - component: {fileID: 1908363373}
   - component: {fileID: 1908363372}
@@ -27982,47 +27980,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ObjectGrabPointTransform: {fileID: 1399285476}
---- !u!114 &1908363368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908363360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8c9041242bafd40b1175a2cf121fff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: 0
-  CurrencyUI: {fileID: 2086902242}
-  MoneyUI: {fileID: 1175885029}
---- !u!114 &1908363369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908363360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd777d9be2fb1a042af0364411930fe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayablePlayer: {fileID: 1908363360}
---- !u!114 &1908363370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908363360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c022b5550cbe8145a397ae2aa813cbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayablePlayer: {fileID: 1908363360}
 --- !u!114 &1908363371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28208,6 +28165,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915733150}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1918002155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1918002156}
+  - component: {fileID: 1918002157}
+  m_Layer: 0
+  m_Name: Balance Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1918002156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918002155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1506709501}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1918002157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918002155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2723996826eadba46ade3cb49438713a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrencyUI: {fileID: 2086902242}
+  tipLowerRange: 0
+  tipHigherRange: 0
 --- !u!1 &1918979445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4032642331417584291, guid: e133dac167ef59c40b7678ba58107c6a, type: 3}
