@@ -5348,6 +5348,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362265598}
   m_CullTransparentMesh: 1
+--- !u!1 &362574667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 362574668}
+  m_Layer: 7
+  m_Name: PaintCan1Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &362574668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362574667}
+  m_LocalRotation: {x: -0, y: 0.9999998, z: -0, w: -0.0006108209}
+  m_LocalPosition: {x: -9.441, y: 1.4749999, z: -5.87}
+  m_LocalScale: {x: 0.19999994, y: 0.2, z: 0.19999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1277078462}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &363733789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13687,6 +13718,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909163947}
   m_CullTransparentMesh: 1
+--- !u!1 &910971987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910971988}
+  m_Layer: 7
+  m_Name: PaintCan2Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910971988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910971987}
+  m_LocalRotation: {x: -0, y: 0.9999998, z: -0, w: -0.0006108209}
+  m_LocalPosition: {x: -9.441, y: 1.0239999, z: -5.87}
+  m_LocalScale: {x: 0.19999994, y: 0.2, z: 0.19999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1277078462}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &912412717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 13802e75ec9bf8e4bbf4858428bb2cd0, type: 3}
@@ -18956,6 +19018,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderCreation: {fileID: 1949495844}
+  balanceControllerObject: {fileID: 1918002155}
+  totalRGB: 0
+  PaintCanLocation: {fileID: 362574667}
 --- !u!1001 &1243573753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19344,6 +19409,9 @@ Transform:
   - {fileID: 1236567189}
   - {fileID: 585211090}
   - {fileID: 133478403}
+  - {fileID: 362574668}
+  - {fileID: 910971988}
+  - {fileID: 1832902533}
   m_Father: {fileID: 1834671919}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26985,6 +27053,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9500000, guid: bdbd9d7226778fd4b8192cf3df5e028d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bdbd9d7226778fd4b8192cf3df5e028d, type: 3}
+--- !u!1 &1832902532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1832902533}
+  m_Layer: 7
+  m_Name: PaintCan3Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1832902533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832902532}
+  m_LocalRotation: {x: -0, y: 0.9999998, z: -0, w: -0.0006108209}
+  m_LocalPosition: {x: -9.441, y: 0.574, z: -5.87}
+  m_LocalScale: {x: 0.19999994, y: 0.2, z: 0.19999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1277078462}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1834671918
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,11 +29,19 @@ public class BalanceController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            SellItem(3.89, 9);
+            SellItem(10, 9);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            tipRange(10);
+            tipRange(10,.1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SellItem(10, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SellItem(10, 1);
         }
     }
 
@@ -51,9 +59,44 @@ public class BalanceController : MonoBehaviour
         }   
     }
 
-    public void SellItem(double price, int quality)
+   public void SellItem(double price, int quality)
     {
-        money = Math.Round(money + price, 2, MidpointRounding.AwayFromZero);
+        double tipAmount = 0;
+        switch (quality)
+        {
+            case 0:
+                tipAmount = 0;
+                break;
+            case 1:
+                tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 5));
+                break;
+            case 2:
+                tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 3));
+                break;
+            case 3:
+                tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 2));
+                break;
+            case 4:
+                tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 1.5));
+                break;
+            case 5:
+                tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 1.25));
+                break;
+            case 6:
+                tipAmount = UnityEngine.Random.Range((float)(tipLowerRange / 1.5), (float)(tipHigherRange / 1.1));
+                break;
+            case 7:
+                tipAmount = UnityEngine.Random.Range((float)(tipLowerRange / 1.1), (float)tipHigherRange);
+                break;
+            case 8:
+                tipAmount = UnityEngine.Random.Range((float)tipLowerRange, (float)tipHigherRange);
+                break;
+            case 9:
+                tipAmount = UnityEngine.Random.Range((float)(tipLowerRange + 0.5), (float)tipHigherRange);
+                break;
+        }
+        Debug.Log("tipLowerRange: " + tipLowerRange + " TipHigherRange: " + tipHigherRange + " TipAmount: " + tipAmount);
+        money = Math.Round(money + price + tipAmount, 2, MidpointRounding.AwayFromZero);
         CurrencyUI.text = "$" + money;
     }
 
@@ -69,10 +112,10 @@ public class BalanceController : MonoBehaviour
         money = balance;
     }
 
-    public void tipRange(double percentIncrease)
+    public void tipRange(double percentIncrease, double lowerIncrease)
     {
-        double HigherIncrease = tipHigherRange * (percentIncrease/100);
-        tipLowerRange += .25;
+        double HigherIncrease = Math.Round(tipHigherRange * (percentIncrease/100), 2, MidpointRounding.AwayFromZero);
+        tipLowerRange += lowerIncrease;
         tipHigherRange += HigherIncrease;
         Debug.Log("Lower Range: " + tipLowerRange + " Higher Range: " + tipHigherRange);
     }
