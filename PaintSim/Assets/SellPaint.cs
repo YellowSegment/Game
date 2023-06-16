@@ -20,10 +20,12 @@ public class SellPaint : MonoBehaviour
     private BalanceController balanceController;
     public int totalRGB;
     private double price;
-    public GameObject PaintCanLocation;
-
+    public GameObject inventoryManagerObject;
+    private InventoryManager inventoryManager;
+    private bool notSold;
     void Start()
     {
+        inventoryManager = inventoryManagerObject.GetComponent<InventoryManager>();
         paintCan = null;
         tintGetter = null;
         paintOrder = orderCreation.GetComponent<PaintOrder>();
@@ -38,6 +40,7 @@ public class SellPaint : MonoBehaviour
             Debug.Log(paintCan);
             paintCanPlaced = true;
             tintGetter = paintCan.GetComponent<PaintCanAnimatorController>();
+            notSold = true;
         }
     }
 
@@ -53,8 +56,9 @@ public class SellPaint : MonoBehaviour
 
     void Update()
     {
-        if (paintCanPlaced && Input.GetKeyDown(KeyCode.F))
+        if (paintCanPlaced && Input.GetKeyDown(KeyCode.F) && notSold)
         {
+            notSold = false;
             score = 0;
             redNeeded = paintOrder.getRed();
             redInCan = tintGetter.getTotalRedTintInCan();
@@ -104,35 +108,35 @@ public class SellPaint : MonoBehaviour
             totalRGB = blueInCan + redInCan + greenInCan;
             if (totalRGB >= 700)
             {
-                price = 40.99;
+                price = 30.99;
             }
             else if (totalRGB >= 600)
             {
-                price = 37.99;
+                price = 27.99;
             }
             else if (totalRGB >= 500)
             {
-                price = 34.99;
+                price = 24.99;
             }
             else if (totalRGB >= 400)
             {
-                price = 31.99;
+                price = 21.99;
             }
             else if (totalRGB >= 300)
             {
-                price = 29.99;
+                price = 19.99;
             }
             else if (totalRGB >= 200)
             {
-                price = 27.99;
+                price = 17.99;
             }
             else if (totalRGB >= 100)
             {
-                price = 24.99;
+                price = 14.99;
             }
             else
             {
-                price = 20.99;
+                price = 10.99;
             }
 
 
@@ -186,8 +190,10 @@ public class SellPaint : MonoBehaviour
                 Debug.Log("What the hell did you do. - 0");
                 balanceController.SellItem(price/2, 0);
             }
-            paintCan.transform.position = PaintCanLocation.transform.position;
+            inventoryManager.sellWhiteCan();
+            tintGetter.resetCan();
             paintCan.SetActive(false);
+            paintCan = null;
         }
     }
 }

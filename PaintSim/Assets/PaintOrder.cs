@@ -13,8 +13,24 @@ public class PaintOrder : MonoBehaviour
     public string colorName;
     public bool orderCreated;
     public float delay;
+    public int paintRange;
 
-
+    void Start()
+    {
+        noOrder();
+        paintRange = 255;
+    }
+    public void addMorePaints()
+    {
+        if (paintRange + 255 > 938)
+        {
+            paintRange = 938;
+        }
+        else
+        {
+            paintRange += 255;
+        }
+    }
     public int getRed()
     {
         return red;
@@ -39,9 +55,16 @@ public class PaintOrder : MonoBehaviour
     {
         orderText.text = ("Paint Name: \n" + colorName + "\nRed Needed:\n" + red + "\nGreen Needed:\n" + green + "\nBlue Needed:\n" + blue);
     }
+
+    public void noOrder()
+    {
+        red = -999;
+        green = -999;
+        blue = -999;
+    }
     public void CreateOrder()
     {
-        count = Random.Range(1,938);   
+        count = Random.Range(1,paintRange);   
             if (count == 1)
                 {
                     colorName = "Beluga";

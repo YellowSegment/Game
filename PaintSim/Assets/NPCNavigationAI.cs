@@ -63,7 +63,7 @@ public class NPCNavigationAI : MonoBehaviour
             npc.SetActive(true);
             walkDirection = Random.Range(0, customerChance);
             isWalking = true;
-            Debug.Log(walkDirection);
+            //Debug.Log(walkDirection);
             unPauseAnimator();
             if (walkDirection == 0)
             {

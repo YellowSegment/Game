@@ -16,10 +16,14 @@ public class PaintCanAnimatorController : MonoBehaviour
     public int RedTintInCan;
     public int BlueTintInCan;
     public int GreenTintInCan;
+    private Vector3 paintCanLocation;
+    private ObjectGrabable objectGrabbable;
 
     // Start is called before the first frame update
     void Start()
     {
+        objectGrabbable = GetComponent<ObjectGrabable>();
+        paintCanLocation = transform.position;
         paintCan.SetBool("PaintCanOpen", false);
         isCanOpen = false;
 
@@ -53,6 +57,12 @@ public class PaintCanAnimatorController : MonoBehaviour
             openUI.SetActive(false);
             closedUI.SetActive(true);
         }
+    }
+
+    public void resetCan()
+    {
+        objectGrabbable.Drop();
+        transform.position = paintCanLocation;
     }
 
     private void OnTriggerEnter(Collider other)

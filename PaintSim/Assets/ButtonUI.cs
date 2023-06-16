@@ -12,10 +12,19 @@ public class ButtonUI : MonoBehaviour
     public GameObject InaccuSmartWeb;
     public InventoryManager inventoryManager;
     private bool onWebsite;
+    public GameObject balanceControllerObject;
+    private BalanceController balanceController;
+    List<GameObject> paintCans = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        
+        balanceController = balanceControllerObject.GetComponent<BalanceController>();
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("PaintCan");
+        foreach (GameObject obj in objectsWithTag)
+        {
+            paintCans.Add(obj);
+            obj.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -60,18 +69,34 @@ public class ButtonUI : MonoBehaviour
         onWebsite = true;
     }
 
+    public void addCan()
+    {
+        for (int i = 0; i < paintCans.Count; i++)
+        {
+            if (!paintCans[i].activeSelf)
+            {
+                paintCans[i].SetActive(true);
+                paintCans[i].GetComponent<PaintCanAnimatorController>().setTotalTintsInCan(0,0,0);
+                break;
+            }
+        }
+    }
+
     public void buyWhiteBase()
     {
-        inventoryManager.addWhiteInventory();
+        if (balanceController.GetBalance() >= 9.99)
+        {
+            inventoryManager.addWhiteInventory();
+            addCan();
+            balanceController.BuyItem(9.99);
+        }
+        else
+        {
+            balanceController.BuyItem(99999999999999999);
+        }
+        
     }
-    public void buyMidBase()
-    {
-        inventoryManager.addMidInventory();
-    }
-    public void buyDeepBase()
-    {
-        inventoryManager.addDeepInventory();
-    }
+
     public void buyStirSticks()
     {
         inventoryManager.addStirSticks();

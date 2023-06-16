@@ -5,8 +5,6 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public int whiteInventory;
-    public int midInventory;
-    public int deepInventory;
     public int stickInventory;
     public int redStock;
     public int greenStock;
@@ -23,7 +21,7 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
-        this.paintCanTotal = whiteInventory+midInventory+deepInventory;
+        this.paintCanTotal = whiteInventory;
         this.tintCanTotal = redStock+greenStock+blueStock;
     }
 
@@ -38,32 +36,6 @@ public class InventoryManager : MonoBehaviour
         {
             paintCanTotal++;
             whiteInventory++;
-        }
-        else
-        {
-            Debug.Log("Not enough storage");
-        }
-    }
-
-    public void addMidInventory()
-    {
-        if (paintCanTotal < maxPaintCans)
-        {
-            paintCanTotal++;
-            midInventory++;
-        }
-        else
-        {
-            Debug.Log("Not enough storage");
-        }
-    }
-    
-    public void addDeepInventory()
-    {
-        if (paintCanTotal < maxPaintCans)
-        {
-            paintCanTotal++;
-            deepInventory++;
         }
         else
         {
@@ -124,14 +96,7 @@ public class InventoryManager : MonoBehaviour
     public void sellWhiteCan()
     {
         whiteInventory--;
-    }
-    public void sellMidCan()
-    {
-        midInventory--;
-    }
-    public void sellDeepCan()
-    {
-        deepInventory--;
+        paintCanTotal--;
     }
 
     public void addStirSticks()
@@ -142,14 +107,26 @@ public class InventoryManager : MonoBehaviour
     public void removeRedTint(int tintUsed)
     {
         totalRedTint -= tintUsed;
+        if (totalRedTint % 255 == 0)
+        {
+            tintCanTotal--;
+        }
     }
     public void removeBlueTint(int tintUsed)
     {
         totalBlueTint -= tintUsed;
+        if (totalBlueTint % 255 == 0)
+        {
+            tintCanTotal--;
+        }
     }
     public void removeGreenTint(int tintUsed)
     {
         totalGreenTint -= tintUsed;
+        if (totalGreenTint % 255 == 0)
+        {
+            tintCanTotal--;
+        }
     }
 
     public int getRedTint()

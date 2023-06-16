@@ -50,23 +50,17 @@ public class TintChoiceController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SelectRedTint();
-            isRed = true;
-            isBlue = false;
-            isGreen = false;
+            
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SelectGreenTint();
-            isRed = false;
-            isBlue = false;
-            isGreen = true;
+            
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SelectBlueTint();
-            isRed = false;
-            isBlue = true;
-            isGreen = false;
+            
         }
     }
 
@@ -89,6 +83,9 @@ public class TintChoiceController : MonoBehaviour
         // Change the colors of the buttons
         SetButtonColors(redTintController, selectedColor);
         ResetButtonColorsExcept(redTintController);
+        isRed = true;
+            isBlue = false;
+            isGreen = false;
     }
 
     public void SelectGreenTint()
@@ -97,6 +94,9 @@ public class TintChoiceController : MonoBehaviour
         // Change the colors of the buttons
         SetButtonColors(greenTintController, selectedColor);
         ResetButtonColorsExcept(greenTintController);
+        isRed = false;
+            isBlue = false;
+            isGreen = true;
     }
 
     public void SelectBlueTint()
@@ -105,6 +105,9 @@ public class TintChoiceController : MonoBehaviour
         // Change the colors of the buttons
         SetButtonColors(blueTintController, selectedColor);
         ResetButtonColorsExcept(blueTintController);
+        isRed = false;
+            isBlue = true;
+            isGreen = false;
     }
 
     private void SetButtonColors(Button button, Color color)

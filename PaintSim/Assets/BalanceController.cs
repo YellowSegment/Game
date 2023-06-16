@@ -18,6 +18,7 @@ public class BalanceController : MonoBehaviour
     {
         tipLowerRange = 0;
         tipHigherRange = 3;
+        setBalance(20);
     }
 
     // Update is called once per frame
@@ -34,14 +35,6 @@ public class BalanceController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             tipRange(10,.1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SellItem(10, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SellItem(10, 1);
         }
     }
 
@@ -95,7 +88,7 @@ public class BalanceController : MonoBehaviour
                 tipAmount = UnityEngine.Random.Range((float)(tipLowerRange + 0.5), (float)tipHigherRange);
                 break;
         }
-        Debug.Log("tipLowerRange: " + tipLowerRange + " TipHigherRange: " + tipHigherRange + " TipAmount: " + tipAmount);
+        Debug.Log("tipLowerRange: " + tipLowerRange + " TipHigherRange: " + tipHigherRange + " TipAmount: " + tipAmount + " Price: " + price + "\nTotal price: " + Math.Round(tipAmount+price, 2, MidpointRounding.AwayFromZero));
         money = Math.Round(money + price + tipAmount, 2, MidpointRounding.AwayFromZero);
         CurrencyUI.text = "$" + money;
     }
@@ -107,9 +100,14 @@ public class BalanceController : MonoBehaviour
         CurrencyUI.text = "$" + money;
     }
 
-    public void getBalance(double balance)
+    public void setBalance(double balance)
     {
         money = balance;
+        CurrencyUI.text = "$" + money;
+    }
+    public double GetBalance()
+    {
+        return money;
     }
 
     public void tipRange(double percentIncrease, double lowerIncrease)
