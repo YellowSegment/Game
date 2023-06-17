@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public int whiteInventory;
@@ -17,7 +17,13 @@ public class InventoryManager : MonoBehaviour
     public int totalRedTint;
     public int totalGreenTint;
     public int totalBlueTint;
-   
+    public Text redAmount1;
+    public Text redAmount2;
+    public Text greenAmount1;
+    public Text greenAmount2;
+    public Text blueAmount1;
+    public Text blueAmount2;
+    public Text paintCanAmount;
 
     void Start()
     {
@@ -27,7 +33,34 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-
+        if (getRedTint() > 999)
+        {
+            redAmount2.text = "+999";
+        }
+        else
+        {
+            redAmount2.text = getRedTint().ToString();
+        }
+        redAmount1.text = getRedTint().ToString();
+        greenAmount1.text = getGreenTint().ToString();
+        blueAmount1.text = getBlueTint().ToString();
+        paintCanAmount.text = paintCanTotal.ToString();
+        if (getGreenTint() > 999)
+        {
+            greenAmount2.text = "+999";
+        }
+        else
+        {
+           greenAmount2.text = getGreenTint().ToString(); 
+        }
+        if (getBlueTint() > 999)
+        {
+            greenAmount2.text = "+999";
+        }
+        else
+        {
+            blueAmount2.text = getBlueTint().ToString();
+        }
     }
 
     public void addWhiteInventory()

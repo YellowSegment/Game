@@ -18,7 +18,7 @@ public class BalanceController : MonoBehaviour
     {
         tipLowerRange = 0;
         tipHigherRange = 3;
-        setBalance(20);
+        setBalance(50);
     }
 
     // Update is called once per frame

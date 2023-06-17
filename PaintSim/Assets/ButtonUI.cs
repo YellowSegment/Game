@@ -92,7 +92,7 @@ public class ButtonUI : MonoBehaviour
         }
         else
         {
-            balanceController.BuyItem(99999999999999999);
+            balanceController.BuyItem(-1);
         }
         
     }
