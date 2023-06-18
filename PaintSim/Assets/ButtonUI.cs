@@ -42,6 +42,19 @@ public class ButtonUI : MonoBehaviour
         }
     }
 
+    public void inAccusmartClick()
+    {
+        desktopUi.SetActive(false);
+        InaccuSmartWeb.SetActive(true);
+        onWebsite = true;
+    }
+    public void leaveinAccusmart()
+    {
+        InaccuSmartWeb.SetActive(false);
+        desktopUi.SetActive(true);
+        onWebsite = false;
+    }
+
     public void radiantClick()
     {
         desktopUi.SetActive(false);
