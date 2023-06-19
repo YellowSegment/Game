@@ -24,9 +24,10 @@ public class PaintCanPlace : MonoBehaviour
             objectToPlace = other.gameObject;
             promptUI.SetActive(true);
         }
-        if (other.CompareTag("Player") && isPaintPlaced)
+        if (other.CompareTag("Player") && !isPaintPlaced)
         {
             canPickup = true;
+            promptUI.SetActive(true);
         } 
     }
 
@@ -42,9 +43,10 @@ public class PaintCanPlace : MonoBehaviour
             objectToPlace = null;
             promptUI.SetActive(false);
         }
-        if (other.CompareTag("Player") && isPaintPlaced)
+        if (other.CompareTag("Player") && !isPaintPlaced)
         {
             canPickup = false;
+            promptUI.SetActive(false);
         } 
     }
 
