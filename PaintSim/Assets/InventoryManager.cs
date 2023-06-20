@@ -11,8 +11,12 @@ public class InventoryManager : MonoBehaviour
     public int blueStock;
     public int maxPaintCans;
     public int paintCanTotal;
-    public int maxTintCans;
-    public int tintCanTotal;
+    public int maxRedTintCans;
+    public int maxGreenTintCans;
+    public int maxBlueTintCans;
+    public int redTintCanTotal;
+    public int greenTintCanTotal;
+    public int blueTintCanTotal;
     public int totalStirSticks;
     public int totalRedTint;
     public int totalGreenTint;
@@ -28,7 +32,9 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         this.paintCanTotal = whiteInventory;
-        this.tintCanTotal = redStock+greenStock+blueStock;
+        this.redTintCanTotal = redStock;
+        this.greenTintCanTotal = greenStock;
+        this.blueTintCanTotal = blueStock;
     }
 
     void Update()
@@ -78,10 +84,10 @@ public class InventoryManager : MonoBehaviour
 
     public void addRedTint()
     {
-        if (tintCanTotal < maxTintCans)
+        if (redTintCanTotal < maxRedTintCans)
         {
             redStock++;
-            tintCanTotal++;
+            redTintCanTotal++;
             totalRedTint += 255;
         }
         else
@@ -91,10 +97,10 @@ public class InventoryManager : MonoBehaviour
     }
     public void addGreenTint()
     {
-        if (tintCanTotal < maxTintCans)
+        if (greenTintCanTotal < maxGreenTintCans)
         {
             greenStock++;
-            tintCanTotal++;
+            greenTintCanTotal++;
             totalGreenTint += 255;
         }
         else
@@ -104,10 +110,10 @@ public class InventoryManager : MonoBehaviour
     }
     public void addBlueTint()
     {
-        if (tintCanTotal < maxTintCans)
+        if (blueTintCanTotal < maxBlueTintCans)
         {
             blueStock++;
-            tintCanTotal++;
+            blueTintCanTotal++;
             totalBlueTint += 255;
         }
         else
@@ -123,7 +129,9 @@ public class InventoryManager : MonoBehaviour
 
     public void increaseTintStorage(int addedStorage)
     {
-        maxTintCans += addedStorage;
+        maxRedTintCans += addedStorage;
+        maxBlueTintCans += addedStorage;
+        maxGreenTintCans += addedStorage;
     }
 
     public void sellWhiteCan()
@@ -134,7 +142,7 @@ public class InventoryManager : MonoBehaviour
 
     public void addStirSticks()
     {
-        totalStirSticks+=10;
+        totalStirSticks+=3;
     }
 
     public void removeRedTint(int tintUsed)
@@ -142,7 +150,7 @@ public class InventoryManager : MonoBehaviour
         totalRedTint -= tintUsed;
         if (totalRedTint % 255 == 0)
         {
-            tintCanTotal--;
+            redTintCanTotal--;
         }
     }
     public void removeBlueTint(int tintUsed)
@@ -150,7 +158,7 @@ public class InventoryManager : MonoBehaviour
         totalBlueTint -= tintUsed;
         if (totalBlueTint % 255 == 0)
         {
-            tintCanTotal--;
+            blueTintCanTotal--;
         }
     }
     public void removeGreenTint(int tintUsed)
@@ -158,9 +166,19 @@ public class InventoryManager : MonoBehaviour
         totalGreenTint -= tintUsed;
         if (totalGreenTint % 255 == 0)
         {
-            tintCanTotal--;
+            greenTintCanTotal--;
         }
     }
+
+    public void useStirStick()
+    {
+        totalStirSticks--;
+    }
+    public int getStirSticks()
+    {
+        return totalStirSticks;
+    }
+    
 
     public int getRedTint()
     {

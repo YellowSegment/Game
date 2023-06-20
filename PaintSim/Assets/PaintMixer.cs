@@ -9,6 +9,7 @@ public class PaintMixer : MonoBehaviour
     private PaintCanPlace paintCanPlaceScript;
     // Start is called before the first frame update
     private GameObject paintCanMaterial;
+    public InventoryManager inventoryManager;
     private int count;
     private int redTint;
     private int greenTint;
@@ -16,23 +17,32 @@ public class PaintMixer : MonoBehaviour
 
     public void MixPaint(int red, int green, int blue)
     {
-        redTint = red;
-        greenTint = green;
-        blueTint = blue;
-        float redAmount = red / 255f;
-        float greenAmount = green / 255f;
-        float blueAmount = blue / 255f;
-
-        Color paintColor;
-        if (redAmount == 0 && greenAmount == 0 && blueAmount == 0)
+        if (inventoryManager.getStirSticks() > 0)
         {
-            paintColor = new Color(255,255,255);
+            inventoryManager.useStirStick();
+            redTint = red;
+            greenTint = green;
+            blueTint = blue;
+            float redAmount = red / 255f;
+            float greenAmount = green / 255f;
+            float blueAmount = blue / 255f;
+
+            Color paintColor;
+            if (redAmount == 0 && greenAmount == 0 && blueAmount == 0)
+            {
+                paintColor = new Color(255,255,255);
+            }
+            else
+            {
+                paintColor = new Color(redAmount, greenAmount, blueAmount);   
+            }
+            paintMaterial.SetColor("_Color", paintColor);
         }
         else
         {
-            paintColor = new Color(redAmount, greenAmount, blueAmount);   
+            Debug.Log("No more stir sticks");
         }
-        paintMaterial.SetColor("_Color", paintColor);
+        
     }
     void Start()
     {

@@ -15,6 +15,8 @@ public class DayEndController : MonoBehaviour
     private ButtonUI buttonUI;
     public Text paintStockUI;
     public InventoryManager inventoryManager;
+    public int dayNumber;
+    public Text dayNumberUI;
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class DayEndController : MonoBehaviour
         {
             endOfDay();
         }
+        dayNumberUI.text = ""+dayNumber;
     }
 
     public void SetPaintCan()
@@ -73,6 +76,7 @@ public class DayEndController : MonoBehaviour
 
     public void endOfDay()
     {
+        dayNumber++;
         for (int i = 0; i < paintCansAdded; i++)
         {
             buttonUI.addCan();
