@@ -14,6 +14,7 @@ public class PaintCanPlace : MonoBehaviour
     public GameObject paintTintCam;
     public GameObject crosshair;
     public GameObject closedUI;
+    public bool paintCanIn;
 
     private GameObject objectToPlace;  // The object you want to place
 
@@ -23,8 +24,9 @@ public class PaintCanPlace : MonoBehaviour
         {
             objectToPlace = other.gameObject;
             promptUI.SetActive(true);
+            paintCanIn = true;
         }
-        if (other.CompareTag("Player") && !isPaintPlaced)
+        if (other.CompareTag("Player") && !isPaintPlaced && paintCanIn)
         {
             canPickup = true;
             promptUI.SetActive(true);
@@ -42,6 +44,7 @@ public class PaintCanPlace : MonoBehaviour
         {
             objectToPlace = null;
             promptUI.SetActive(false);
+            paintCanIn = false;
         }
         if (other.CompareTag("Player") && !isPaintPlaced)
         {

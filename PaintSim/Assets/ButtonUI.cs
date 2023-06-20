@@ -14,12 +14,15 @@ public class ButtonUI : MonoBehaviour
     private bool onWebsite;
     public GameObject balanceControllerObject;
     private BalanceController balanceController;
+    public GameObject DayEndControllerObject;
+    private DayEndController dayEndController;
     List<GameObject> paintCans = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         balanceController = balanceControllerObject.GetComponent<BalanceController>();
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("PaintCan");
+        dayEndController = DayEndControllerObject.GetComponent<DayEndController>();
         foreach (GameObject obj in objectsWithTag)
         {
             paintCans.Add(obj);
@@ -99,8 +102,7 @@ public class ButtonUI : MonoBehaviour
     {
         if (balanceController.GetBalance() >= 9.99)
         {
-            inventoryManager.addWhiteInventory();
-            addCan();
+            dayEndController.SetPaintCan();
             balanceController.BuyItem(9.99);
         }
         else
