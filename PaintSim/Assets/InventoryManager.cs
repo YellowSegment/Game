@@ -28,6 +28,7 @@ public class InventoryManager : MonoBehaviour
     public Text blueAmount1;
     public Text blueAmount2;
     public Text paintCanAmount;
+    public Text totalStirSticksText;
 
     void Start()
     {
@@ -51,6 +52,7 @@ public class InventoryManager : MonoBehaviour
         greenAmount1.text = getGreenTint().ToString();
         blueAmount1.text = getBlueTint().ToString();
         paintCanAmount.text = paintCanTotal.ToString();
+        totalStirSticksText.text = totalStirSticks.ToString();
         if (getGreenTint() > 999)
         {
             greenAmount2.text = "+999";
