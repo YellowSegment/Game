@@ -114,19 +114,75 @@ public class ButtonUI : MonoBehaviour
 
     public void buyStirSticks()
     {
-        inventoryManager.addStirSticks();
+        if (balanceController.GetBalance() >= 2.99)
+        {
+            dayEndController.setStirSticksAdded();
+            balanceController.BuyItem(2.99);
+        }
+        else
+        {
+            balanceController.BuyItem(-1);
+        }
     }
     public void buyRedTint()
     {
-        inventoryManager.addRedTint();
+        if (balanceController.GetBalance() >= 4.99)
+        {
+        if (inventoryManager.GetRedTintCanTotal() < inventoryManager.getMaxRedTintCans())
+            {
+            inventoryManager.addRedTintCanTotal();
+            dayEndController.SetRedTintAdded();
+            balanceController.BuyItem(4.99);
+            }
+            else
+            {
+                Debug.Log("Not enough storage");
+            }
+        }
+        else
+        {
+            balanceController.BuyItem(-1);
+        }
     }
     public void buyGreenTint()
     {
-        inventoryManager.addGreenTint();
+        if (balanceController.GetBalance() >= 4.99)
+        {
+            if(inventoryManager.GetGreenTintCanTotal() < inventoryManager.getMaxGreenTintCans())
+            {
+            inventoryManager.addGreenTintCanTotal();
+            dayEndController.SetGreenTintAdded();
+            balanceController.BuyItem(4.99);
+            }
+            else
+            {
+                Debug.Log("Not enough storage");
+            }
+        }
+        else
+        {
+            balanceController.BuyItem(-1);
+        }
     }
     public void buyBlueTint()
     {
-        inventoryManager.addBlueTint();
+        if (balanceController.GetBalance() >= 4.99)
+        {
+            if(inventoryManager.GetBlueTintCanTotal() < inventoryManager.getMaxBlueTintCans())
+            {
+                inventoryManager.addBlueTintCanTotal();
+                dayEndController.SetBlueTintAdded();
+                balanceController.BuyItem(4.99);
+            }
+            else
+            {
+                Debug.Log("Not enough storage");
+            }
+        }
+        else
+        {
+            balanceController.BuyItem(-1);
+        }
     }
 
     public bool getOnSite()

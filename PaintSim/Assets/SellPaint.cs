@@ -6,7 +6,7 @@ public class SellPaint : MonoBehaviour
 {
     private GameObject paintCan;
     private bool paintCanPlaced;
-    private PaintCanAnimatorController tintGetter;
+    private PaintMixer tintGetter;
     public GameObject orderCreation;
     private PaintOrder paintOrder;
     int score = 0;
@@ -22,12 +22,14 @@ public class SellPaint : MonoBehaviour
     private double price;
     public GameObject inventoryManagerObject;
     private InventoryManager inventoryManager;
+    private PaintCanAnimatorController paintcanAnimator;
     private bool notSold;
     void Start()
     {
         inventoryManager = inventoryManagerObject.GetComponent<InventoryManager>();
         paintCan = null;
         tintGetter = null;
+        paintcanAnimator = null;
         paintOrder = orderCreation.GetComponent<PaintOrder>();
         balanceController = balanceControllerObject.GetComponent<BalanceController>();
     }
@@ -39,7 +41,8 @@ public class SellPaint : MonoBehaviour
             paintCan = other.gameObject;
             Debug.Log(paintCan);
             paintCanPlaced = true;
-            tintGetter = paintCan.GetComponent<PaintCanAnimatorController>();
+            tintGetter = paintCan.GetComponent<PaintMixer>();
+            paintcanAnimator = paintCan.GetComponent<PaintCanAnimatorController>();
             notSold = true;
         }
     }
@@ -51,6 +54,7 @@ public class SellPaint : MonoBehaviour
             paintCanPlaced = false;
             paintCan = null;
             tintGetter = null;
+            paintcanAnimator = null;
         }
     }
 
@@ -61,11 +65,11 @@ public class SellPaint : MonoBehaviour
             notSold = false;
             score = 0;
             redNeeded = paintOrder.getRed();
-            redInCan = tintGetter.getTotalRedTintInCan();
+            redInCan = tintGetter.getRedTintAmount();
             greenNeeded = paintOrder.getGreen();
-            greenInCan = tintGetter.getTotalGreenTintInCan();
+            greenInCan = tintGetter.getGreenTintAmount();
             blueNeeded = paintOrder.getBlue();
-            blueInCan = tintGetter.getTotalBlueTintInCan();
+            blueInCan = tintGetter.getBlueTintAmount();
             if (redNeeded == redInCan)
             {
                 score += 3;
@@ -191,7 +195,7 @@ public class SellPaint : MonoBehaviour
                 balanceController.SellItem(price/2, 0);
             }
             inventoryManager.sellWhiteCan();
-            tintGetter.resetCan();
+            paintcanAnimator.resetCan();
             paintCan.SetActive(false);
             paintCan = null;
         }

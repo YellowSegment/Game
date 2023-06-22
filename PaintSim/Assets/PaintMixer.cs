@@ -15,6 +15,7 @@ public class PaintMixer : MonoBehaviour
     private int greenTint;
     private int blueTint;
 
+
     public void MixPaint(int red, int green, int blue)
     {
         if (inventoryManager.getStirSticks() > 0)
@@ -47,6 +48,9 @@ public class PaintMixer : MonoBehaviour
     void Start()
     {
         paintCanPlaceScript = PaintCanPlaceObject.GetComponent<PaintCanPlace>();
+        redTint = -999;
+        greenTint = -999;
+        blueTint = -999;
     }
 
     // Update is called once per frame

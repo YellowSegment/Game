@@ -29,6 +29,9 @@ public class InventoryManager : MonoBehaviour
     public Text blueAmount2;
     public Text paintCanAmount;
     public Text totalStirSticksText;
+    public Text maxRedTint;
+    public Text maxGreenTint;
+    public Text maxBlueTint;
 
     void Start()
     {
@@ -53,6 +56,9 @@ public class InventoryManager : MonoBehaviour
         blueAmount1.text = getBlueTint().ToString();
         paintCanAmount.text = paintCanTotal.ToString();
         totalStirSticksText.text = totalStirSticks.ToString();
+        maxRedTint.text = (maxRedTintCans*255).ToString();
+        maxBlueTint.text = (maxBlueTintCans*255).ToString();
+        maxGreenTint.text = (maxGreenTintCans*255).ToString();
         if (getGreenTint() > 999)
         {
             greenAmount2.text = "+999";
@@ -86,42 +92,55 @@ public class InventoryManager : MonoBehaviour
 
     public void addRedTint()
     {
-        if (redTintCanTotal < maxRedTintCans)
-        {
             redStock++;
-            redTintCanTotal++;
             totalRedTint += 255;
-        }
-        else
-        {
-            Debug.Log("Not enough storage");
-        }
+    }
+
+    public int GetRedTintCanTotal()
+    {
+        return redTintCanTotal;
+    }
+    public int getMaxRedTintCans()
+    {
+        return maxRedTintCans;
+    }
+    public int getMaxGreenTintCans()
+    {
+        return maxGreenTintCans;
+    }
+    public int getMaxBlueTintCans()
+    {
+        return maxBlueTintCans;
+    }
+    public void addRedTintCanTotal()
+    {
+        redTintCanTotal++;
+    }
+    public int GetGreenTintCanTotal()
+    {
+        return greenTintCanTotal;
+    }
+    public void addGreenTintCanTotal()
+    {
+        greenTintCanTotal++;
+    }
+    public int GetBlueTintCanTotal()
+    {
+        return blueTintCanTotal;
+    }
+    public void addBlueTintCanTotal()
+    {
+        blueTintCanTotal++;
     }
     public void addGreenTint()
     {
-        if (greenTintCanTotal < maxGreenTintCans)
-        {
             greenStock++;
-            greenTintCanTotal++;
             totalGreenTint += 255;
-        }
-        else
-        {
-            Debug.Log("Not enough storage");
-        }
     }
     public void addBlueTint()
     {
-        if (blueTintCanTotal < maxBlueTintCans)
-        {
             blueStock++;
-            blueTintCanTotal++;
             totalBlueTint += 255;
-        }
-        else
-        {
-            Debug.Log("Not enough storage");
-        }
     }
 
     public void increasePaintCanStorage(int addedStorage)
@@ -144,7 +163,7 @@ public class InventoryManager : MonoBehaviour
 
     public void addStirSticks()
     {
-        totalStirSticks+=3;
+        totalStirSticks++;
     }
 
     public void removeRedTint(int tintUsed)
