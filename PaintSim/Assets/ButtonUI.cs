@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonUI : MonoBehaviour
 {
+    public GameObject confirmPurchaseUI;
     public GameObject RadiantWeb;
     public GameObject desktopUi;
     public GameObject FauxPropertiesWeb;
@@ -17,9 +18,14 @@ public class ButtonUI : MonoBehaviour
     public GameObject DayEndControllerObject;
     private DayEndController dayEndController;
     List<GameObject> paintCans = new List<GameObject>();
+    private int item;
+    public GameObject goggleUI;
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        goggleUI.SetActive(true);
         balanceController = balanceControllerObject.GetComponent<BalanceController>();
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("PaintCan");
         dayEndController = DayEndControllerObject.GetComponent<DayEndController>();
@@ -44,6 +50,8 @@ public class ButtonUI : MonoBehaviour
             onWebsite = false;
         }
     }
+    
+
 
     public void inAccusmartClick()
     {
@@ -62,6 +70,7 @@ public class ButtonUI : MonoBehaviour
     {
         desktopUi.SetActive(false);
         RadiantWeb.SetActive(true);
+        confirmPurchaseUI.SetActive(false);
         onWebsite = true;
     }
 
@@ -98,17 +107,65 @@ public class ButtonUI : MonoBehaviour
         }
     }
 
+
+    public void addConfirm()
+    {
+        if (item == 1)
+        {
+            buyWhiteBase();
+            confirmPurchaseUI.SetActive(false);
+        }
+        else if (item == 2)
+        {
+            buyStirSticks();
+            confirmPurchaseUI.SetActive(false);
+        }
+        else if (item == 3)
+        {
+            buyRedTint();
+            confirmPurchaseUI.SetActive(false);
+        }
+        else if (item == 4)
+        {
+            buyGreenTint();
+            confirmPurchaseUI.SetActive(false);
+        }
+        else if (item == 5)
+        {
+            buyBlueTint();
+            confirmPurchaseUI.SetActive(false);
+        }
+        
+    }
+
+    public void itemClicked(int purchase)
+    {
+        confirmPurchaseUI.SetActive(true);
+        inventoryManager.getInfo(purchase);
+        item = purchase;
+    }
+
+    public void cancelConfirm()
+    {
+        confirmPurchaseUI.SetActive(false);
+    }
+
     public void buyWhiteBase()
     {
-        if (balanceController.GetBalance() >= 9.99)
+        if (inventoryManager.getPaintCanTotal() < inventoryManager.getMaxPaintCans())
         {
-            dayEndController.SetPaintCan();
-            balanceController.BuyItem(9.99);
+            if (balanceController.GetBalance() >= 9.99)
+            {
+                dayEndController.SetPaintCan();
+                balanceController.BuyItem(9.99);
+                inventoryManager.addPaintCans();
+            }
+            else
+            {
+                balanceController.BuyItem(-1);
+            }
         }
-        else
-        {
-            balanceController.BuyItem(-1);
-        }
+        
         
     }
 

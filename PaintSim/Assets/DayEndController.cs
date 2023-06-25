@@ -21,6 +21,7 @@ public class DayEndController : MonoBehaviour
     public Text greenTintComing;
     public Text blueTintComing;
     public Text stirSticksComing;
+    
 
     void Start()
     {

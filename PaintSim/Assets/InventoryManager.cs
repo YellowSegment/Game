@@ -33,6 +33,9 @@ public class InventoryManager : MonoBehaviour
     public Text maxGreenTint;
     public Text maxBlueTint;
 
+    public Text stockConfirm;
+    
+
     void Start()
     {
         this.paintCanTotal = whiteInventory;
@@ -40,7 +43,29 @@ public class InventoryManager : MonoBehaviour
         this.greenTintCanTotal = greenStock;
         this.blueTintCanTotal = blueStock;
     }
-
+    public void getInfo(int i)
+    {
+        if (i == 1)
+        {
+            stockConfirm.text = paintCanAmount + "/" + maxPaintCans;
+        }
+        else if (i == 2)
+        {
+            stockConfirm.text = totalStirSticks.ToString();   
+        }
+        else if (i == 3)
+        {
+            stockConfirm.text = redAmount1 + "/" + maxRedTint;
+        }
+        else if (i == 4)
+        {
+            stockConfirm.text = greenAmount1 + "/" + maxGreenTint;
+        }
+        else if (i == 5)
+        {
+            stockConfirm.text = blueAmount1 + "/" + maxBlueTint;
+        }
+    }
     void Update()
     {
         if (getRedTint() > 999)
@@ -79,15 +104,7 @@ public class InventoryManager : MonoBehaviour
 
     public void addWhiteInventory()
     {
-        if (paintCanTotal < maxPaintCans)
-        {
-            paintCanTotal++;
             whiteInventory++;
-        }
-        else
-        {
-            Debug.Log("Not enough storage");
-        }
     }
 
     public void addRedTint()
@@ -190,7 +207,10 @@ public class InventoryManager : MonoBehaviour
             greenTintCanTotal--;
         }
     }
-
+    public int getMaxPaintCans()
+    {
+        return maxPaintCans;
+    }
     public void useStirStick()
     {
         totalStirSticks--;
@@ -199,8 +219,26 @@ public class InventoryManager : MonoBehaviour
     {
         return totalStirSticks;
     }
-    
-
+    public int getPaintCanTotal()
+    {
+        return paintCanTotal;
+    }
+    public void addPaintCans()
+    {
+        paintCanTotal++;
+    }
+    public void addRedTints()
+    {
+        redTintCanTotal++;
+    }
+    public void addGreenTints()
+    {
+        greenTintCanTotal++;
+    }
+    public void addBlueTints()
+    {
+        blueTintCanTotal++;
+    }
     public int getRedTint()
     {
         return totalRedTint;

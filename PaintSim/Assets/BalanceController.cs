@@ -40,7 +40,7 @@ public class BalanceController : MonoBehaviour
 
     public void BuyItem(double purchasePrice)
     {
-        if (purchasePrice <= money)
+        if (purchasePrice <= money && purchasePrice != -1)
         {
             money = Math.Round(money - purchasePrice, 2, MidpointRounding.AwayFromZero);
             UpdateBalanceUI();
