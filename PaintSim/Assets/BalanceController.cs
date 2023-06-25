@@ -7,7 +7,7 @@ using System;
 public class BalanceController : MonoBehaviour
 {
 
-    public Text CurrencyUI; 
+    public Text[] CurrencyUI; 
     private double money;
     public double tipLowerRange;
     public double tipHigherRange;
@@ -43,7 +43,7 @@ public class BalanceController : MonoBehaviour
         if (purchasePrice <= money)
         {
             money = Math.Round(money - purchasePrice, 2, MidpointRounding.AwayFromZero);
-            CurrencyUI.text = "$" + money;
+            UpdateBalanceUI();
         }
         else
         {
@@ -90,20 +90,32 @@ public class BalanceController : MonoBehaviour
         }
         Debug.Log("tipLowerRange: " + tipLowerRange + " TipHigherRange: " + tipHigherRange + " TipAmount: " + tipAmount + " Price: " + price + "\nTotal price: " + Math.Round(tipAmount+price, 2, MidpointRounding.AwayFromZero));
         money = Math.Round(money + price + tipAmount, 2, MidpointRounding.AwayFromZero);
-        CurrencyUI.text = "$" + money;
+        UpdateBalanceUI();
+    }
+
+    private void UpdateBalanceUI()
+    {
+        foreach (Text textElement in CurrencyUI)
+        {
+            textElement.text = "$" + money;
+        }
     }
 
     public IEnumerator ShowNotEnoughMoneyMessage()
     {
-        CurrencyUI.text = "Not enough money!";
+        foreach (Text textElement in CurrencyUI)
+        {
+            textElement.text = "Not enough money!";
+        }
         yield return new WaitForSeconds(2);
-        CurrencyUI.text = "$" + money;
+        UpdateBalanceUI();
     }
+
 
     public void setBalance(double balance)
     {
         money = balance;
-        CurrencyUI.text = "$" + money;
+        UpdateBalanceUI();
     }
     public double GetBalance()
     {
