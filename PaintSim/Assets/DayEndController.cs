@@ -82,6 +82,10 @@ public class DayEndController : MonoBehaviour
     {
         return stirSticksAdded;
     }
+    public int getDayNumber()
+    {
+        return dayNumber;
+    }
 
     public void endOfDay()
     {

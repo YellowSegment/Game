@@ -32,9 +32,11 @@ public class InventoryManager : MonoBehaviour
     public Text maxRedTint;
     public Text maxGreenTint;
     public Text maxBlueTint;
+    public DayEndController dayEndController;
 
     public Text stockConfirm;
-    
+    public Text dayComing;
+    public Text price;
 
     void Start()
     {
@@ -45,25 +47,31 @@ public class InventoryManager : MonoBehaviour
     }
     public void getInfo(int i)
     {
+        dayComing.text = (dayEndController.getDayNumber()+1).ToString();
         if (i == 1)
         {
-            stockConfirm.text = paintCanAmount + "/" + maxPaintCans;
+            price.text = "$" + 9.99;
+            stockConfirm.text = (paintCanTotal + "/" + maxPaintCans).ToString();
         }
         else if (i == 2)
         {
-            stockConfirm.text = totalStirSticks.ToString();   
+            price.text = "$" + 2.99;
+            stockConfirm.text = (totalStirSticks+dayEndController.getStirSticksAdded()).ToString();   
         }
         else if (i == 3)
         {
-            stockConfirm.text = redAmount1 + "/" + maxRedTint;
+            price.text = "$" + 4.99;
+            stockConfirm.text = redTintCanTotal + "/" + maxRedTintCans;
         }
         else if (i == 4)
         {
-            stockConfirm.text = greenAmount1 + "/" + maxGreenTint;
+            price.text = "$" + 4.99;
+            stockConfirm.text = greenTintCanTotal + "/" + maxGreenTintCans;
         }
         else if (i == 5)
         {
-            stockConfirm.text = blueAmount1 + "/" + maxBlueTint;
+            price.text = "$" + 4.99;
+            stockConfirm.text = blueTintCanTotal + "/" + maxBlueTintCans;
         }
     }
     void Update()
