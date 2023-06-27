@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using TMPro;
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer MusicVolume;
+    public AudioMixer VoiceVolume;
     Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
+    public Text musicVolumeText;
+    public Text voiceVolumeText;
+    public GameObject AudioSettings;
+    public GameObject videoSettings;
+    public GameObject gameplaySettings;
 
     void Start()
     {
@@ -34,16 +41,42 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
-
+    
+    public void clickAudioSettings()
+    {
+        AudioSettings.SetActive(true);
+        videoSettings.SetActive(false);
+        gameplaySettings.SetActive(false);
+    }
+    public void clickVideoSettings()
+    {
+        AudioSettings.SetActive(false);
+        videoSettings.SetActive(true);
+        gameplaySettings.SetActive(false);
+    }
+    public void clickGamePlaySettings()
+    {
+        AudioSettings.SetActive(false);
+        videoSettings.SetActive(false);
+        gameplaySettings.SetActive(true);
+    }
 
     public void SetMusicVolume(float volume)
     {
         MusicVolume.SetFloat("MusicVolume", volume);
+        int tempInt = (int)(volume+95);
+        musicVolumeText.text = tempInt.ToString();
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
     }
 
     public void SetVoiceVolume(float volume)
     {
-        // Implement voice volume setting
+        VoiceVolume.SetFloat("MusicVolume", volume);
+        voiceVolumeText.text = volume.ToString();
     }
 
     public void SetSoundEffectVolume(float volume)
