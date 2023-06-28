@@ -80,6 +80,7 @@ public class SellPaint : MonoBehaviour
             greenInCan = tintGetter.getGreenTintAmount();
             blueNeeded = paintOrder.getBlue();
             blueInCan = tintGetter.getBlueTintAmount();
+            
             if (redNeeded == redInCan)
             {
                 score += 3;

@@ -38266,10 +38266,10 @@ MonoBehaviour:
   - {fileID: 1084976692}
   tipLowerRange: 0
   tipHigherRange: 0
-  basePrice: {fileID: 0}
-  tipPrice: {fileID: 0}
-  quality: {fileID: 0}
-  totalPrice: {fileID: 0}
+  basePrice: {fileID: 221244640}
+  tipPrice: {fileID: 1371453428}
+  qualityText: {fileID: 2107720896}
+  totalPrice: {fileID: 2049898587}
 --- !u!1 &1918979445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4032642331417584291, guid: e133dac167ef59c40b7678ba58107c6a, type: 3}
@@ -42298,7 +42298,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

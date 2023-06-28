@@ -45,15 +45,6 @@ public class PaintOrder : MonoBehaviour
     }
     void Update()
     {
-        if (red != -999)
-        {
-          getOrder();  
-        }
-        else
-        {
-            orderText.text = ("No available orders to complete");
-        }
-        
         if (Input.GetKeyDown(KeyCode.I))
         {
             CreateOrder();
@@ -66,9 +57,10 @@ public class PaintOrder : MonoBehaviour
 
     public void noOrder()
     {
-        red = -999;
-        green = -999;
-        blue = -999;
+        red = -99;
+        green = -99;
+        blue = -99;
+        orderText.text = ("No available orders to complete");
     }
     public void CreateOrder()
     {
@@ -7569,6 +7561,7 @@ public class PaintOrder : MonoBehaviour
                     green = 253;
                     blue = 247;
                 }
+                getOrder();
 
 
 

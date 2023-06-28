@@ -13,7 +13,7 @@ public class BalanceController : MonoBehaviour
     public double tipHigherRange;
     public Text basePrice;
     public Text tipPrice;
-    public Text quality;
+    public Text qualityText;
     public Text totalPrice;
     
 
@@ -53,36 +53,48 @@ public class BalanceController : MonoBehaviour
         {
             case 0:
                 tipAmount = 0;
+                qualityText.text = "AWFUL";
                 break;
             case 1:
                 tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 5));
+                qualityText.text = "AWFUL";
                 break;
             case 2:
                 tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 3));
+                qualityText.text = "AWFUL";
                 break;
             case 3:
                 tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 2));
+                qualityText.text = "BAD";
                 break;
             case 4:
                 tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 1.5));
+                qualityText.text = "BAD";
                 break;
             case 5:
                 tipAmount = UnityEngine.Random.Range(0f, (float)(tipHigherRange / 1.25));
+                qualityText.text = "OKAY";
                 break;
             case 6:
                 tipAmount = UnityEngine.Random.Range((float)(tipLowerRange / 1.5), (float)(tipHigherRange / 1.1));
+                qualityText.text = "OKAY";
                 break;
             case 7:
                 tipAmount = UnityEngine.Random.Range((float)(tipLowerRange / 1.1), (float)tipHigherRange);
+                qualityText.text = "GOOD";
                 break;
             case 8:
                 tipAmount = UnityEngine.Random.Range((float)tipLowerRange, (float)tipHigherRange);
+                qualityText.text = "GREAT";
                 break;
             case 9:
                 tipAmount = UnityEngine.Random.Range((float)(tipLowerRange + 0.5), (float)tipHigherRange);
+                qualityText.text = "PERFECT";
                 break;
         }
-        Debug.Log("tipLowerRange: " + tipLowerRange + " TipHigherRange: " + tipHigherRange + " TipAmount: " + tipAmount + " Price: " + price + "\nTotal price: " + Math.Round(tipAmount+price, 2, MidpointRounding.AwayFromZero));
+        basePrice.text = "$" + (Math.Round(price, 2, MidpointRounding.AwayFromZero)).ToString();
+        tipPrice.text = "$" + (Math.Round(tipAmount, 2, MidpointRounding.AwayFromZero)).ToString();
+        totalPrice.text = "$" + (Math.Round(price + tipAmount, 2, MidpointRounding.AwayFromZero)).ToString();
         money = Math.Round(money + price + tipAmount, 2, MidpointRounding.AwayFromZero);
         UpdateBalanceUI();
     }
