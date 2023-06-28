@@ -11,6 +11,11 @@ public class BalanceController : MonoBehaviour
     private double money;
     public double tipLowerRange;
     public double tipHigherRange;
+    public Text basePrice;
+    public Text tipPrice;
+    public Text quality;
+    public Text totalPrice;
+    
 
 
     // Start is called before the first frame update
@@ -24,18 +29,7 @@ public class BalanceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            BuyItem(3.99);
-        }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            SellItem(10, 9);
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            tipRange(10,.1);
-        }
+        
     }
 
     public void BuyItem(double purchasePrice)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SellPaint : MonoBehaviour
 {
@@ -24,8 +25,11 @@ public class SellPaint : MonoBehaviour
     private InventoryManager inventoryManager;
     private PaintCanAnimatorController paintcanAnimator;
     private bool notSold;
+    public GameObject soldItem;
+
     void Start()
     {
+        soldItem.SetActive(false);
         inventoryManager = inventoryManagerObject.GetComponent<InventoryManager>();
         paintCan = null;
         tintGetter = null;
@@ -58,6 +62,12 @@ public class SellPaint : MonoBehaviour
         }
     }
 
+    IEnumerator DisplaySell()
+    {
+        soldItem.SetActive(true);
+        yield return new WaitForSeconds(5);
+        soldItem.SetActive(false);
+    }
     void Update()
     {
         if (paintCanPlaced && Input.GetKeyDown(KeyCode.F) && notSold)
@@ -194,6 +204,8 @@ public class SellPaint : MonoBehaviour
                 Debug.Log("What the hell did you do. - 0");
                 balanceController.SellItem(price/2, 0);
             }
+            StartCoroutine("DisplaySell");
+            paintOrder.noOrder();
             inventoryManager.sellWhiteCan();
             paintcanAnimator.resetCan();
             paintCan.SetActive(false);

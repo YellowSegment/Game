@@ -6519,7 +6519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &305044351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25169,6 +25169,7 @@ MonoBehaviour:
   balanceControllerObject: {fileID: 1918002155}
   totalRGB: 0
   inventoryManagerObject: {fileID: 1968160207}
+  soldItem: {fileID: 305044350}
 --- !u!1001 &1243573753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25973,7 +25974,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2107720895}
   m_Father: {fileID: 1670683763}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34133,7 +34135,6 @@ RectTransform:
   - {fileID: 5124287}
   - {fileID: 642614066}
   - {fileID: 1292080216}
-  - {fileID: 2107720895}
   - {fileID: 1920789971}
   m_Father: {fileID: 305044351}
   m_RootOrder: 0
@@ -38265,6 +38266,10 @@ MonoBehaviour:
   - {fileID: 1084976692}
   tipLowerRange: 0
   tipHigherRange: 0
+  basePrice: {fileID: 0}
+  tipPrice: {fileID: 0}
+  quality: {fileID: 0}
+  totalPrice: {fileID: 0}
 --- !u!1 &1918979445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4032642331417584291, guid: e133dac167ef59c40b7678ba58107c6a, type: 3}
@@ -38493,7 +38498,7 @@ RectTransform:
   m_Children:
   - {fileID: 1816491105}
   m_Father: {fileID: 1670683763}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -42253,17 +42258,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107720894}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1670683763}
-  m_RootOrder: 4
+  m_Father: {fileID: 1292080216}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 161, y: 54}
+  m_AnchoredPosition: {x: 4, y: -35}
   m_SizeDelta: {x: 148.7944, y: 34.282}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107720896
