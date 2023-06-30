@@ -71,6 +71,8 @@ public class GameSaveLoadController : MonoBehaviour
         tintAmount[2] = inventoryManager.getBlueTint();
 
         dayNumbers = dayEndController.getDayNumber();
+
+        Debug.Log("Game Successfully Saved");
     }
     public void Load()
     {
@@ -79,5 +81,7 @@ public class GameSaveLoadController : MonoBehaviour
         dayEndController.LoadData(paintCansComing, redTintCansComing, greenTintCansComing, blueTintCansComing, stirSticksComing, dayNumbers);
         buttonUI.resetCans();
         buttonUI.addCans(paintCans);
+        
+        Debug.Log("Game Successfully Loaded");
     }    
 }
