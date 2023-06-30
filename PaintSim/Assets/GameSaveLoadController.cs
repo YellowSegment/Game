@@ -24,6 +24,7 @@ public class GameSaveLoadController : MonoBehaviour
     private int maxBlueTintCans;
     private int paintCansTotal;
     private int[] tintAmount = new int[3];
+    private int dayNumbers;
 
     public BalanceController balanceController;
     public InventoryManager inventoryManager;
@@ -68,11 +69,15 @@ public class GameSaveLoadController : MonoBehaviour
         tintAmount[0] = inventoryManager.getRedTint();
         tintAmount[1] = inventoryManager.getGreenTint();
         tintAmount[2] = inventoryManager.getBlueTint();
+
+        dayNumbers = dayEndController.getDayNumber();
     }
     public void Load()
     {
         inventoryManager.LoadData(worldNumber, paintCans, paintCansTotal, redTintCans, redTintCansTotal, greenTintCans, greenTintTotal, blueTintCans, blueTintTotal, stirSticks, tintAmount);
         balanceController.setBalance(balance);
-        dayEndController.LoadData(paintCansComing, redTintCansComing, greenTintCansComing, blueTintCansComing, stirSticksComing);
+        dayEndController.LoadData(paintCansComing, redTintCansComing, greenTintCansComing, blueTintCansComing, stirSticksComing, dayNumbers);
+        buttonUI.resetCans();
+        buttonUI.addCans(paintCans);
     }    
 }

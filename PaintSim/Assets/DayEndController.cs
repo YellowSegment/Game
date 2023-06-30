@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class DayEndController : MonoBehaviour
 {
@@ -21,12 +22,19 @@ public class DayEndController : MonoBehaviour
     public Text greenTintComing;
     public Text blueTintComing;
     public Text stirSticksComing;
-    
+    public Text timeText;
 
+    public int time;
+    public float totalTime;
+    public float timePassed;
+    public int hour;
+    public int minute;
+    public float timerSpeed;
     void Start()
     {
         buttonUI = ButtonControllerObject.GetComponent<ButtonUI>();
         paintStockUI.text = "+" + paintCansAdded;
+        timerSpeed = 1;
     }
     void Update()
     {
@@ -40,6 +48,35 @@ public class DayEndController : MonoBehaviour
             endOfDay();
         }
         dayNumberUI.text = ""+dayNumber;
+
+
+        totalTime += Time.deltaTime*timerSpeed;
+        if (totalTime >= 60)
+        {
+            totalTime = 0;
+            hour++;
+            minute = 0;
+        }
+        if (hour == 24)
+        {
+            hour = 0;
+        }
+        minute = (int)totalTime;
+
+        string formattedHour = hour.ToString("00");
+        string formattedMinute = minute.ToString("00");
+        timeText.text = formattedHour + ":" + formattedMinute;
+    }
+    public void setTime(int time)
+    {
+        hour = time / 100;
+        minute = time % hour;
+    }
+
+    public int getTime()
+    {
+        time = (hour * 100) + minute;
+        return time;
     }
 
     public void SetPaintCan()
@@ -86,13 +123,14 @@ public class DayEndController : MonoBehaviour
     {
         return dayNumber;
     }
-    public void LoadData(int paintCansComing, int redTintCansComing, int greenTintCansComing, int blueTintCansComing, int stirSticksComing)
+    public void LoadData(int paintCansComing, int redTintCansComing, int greenTintCansComing, int blueTintCansComing, int stirSticksComing, int dayNumber)
     {
         paintCansAdded = paintCansComing;
         redTintAdded = redTintCansComing;
         greenTintAdded = greenTintCansComing;
         blueTintAdded = blueTintCansComing; 
         stirSticksAdded = stirSticksComing;
+        this.dayNumber = dayNumber;
     }
     public void endOfDay()
     {

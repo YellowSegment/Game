@@ -21,6 +21,7 @@ public class ButtonUI : MonoBehaviour
     private int item;
     public GameObject goggleUI;
     public int worldNumber = 1;
+    GameObject[] objectsWithTag;
     
 
     // Start is called before the first frame update
@@ -28,13 +29,15 @@ public class ButtonUI : MonoBehaviour
     {
         goggleUI.SetActive(true);
         balanceController = balanceControllerObject.GetComponent<BalanceController>();
-        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("PaintCan");
+        objectsWithTag = GameObject.FindGameObjectsWithTag("PaintCan");
         dayEndController = DayEndControllerObject.GetComponent<DayEndController>();
+
         foreach (GameObject obj in objectsWithTag)
         {
             paintCans.Add(obj);
             obj.SetActive(false);
         }
+
     }
 
     // Update is called once per frame
@@ -112,6 +115,21 @@ public class ButtonUI : MonoBehaviour
                 paintCans[i].GetComponent<PaintCanAnimatorController>().setTotalTintsInCan(0,0,0);
                 break;
             }
+        }
+    }
+    public void addCans(int cansTotal)
+    {
+        for (int i = 0; i < cansTotal; i++)
+        {
+            paintCans[i].SetActive(true);
+            paintCans[i].GetComponent<PaintCanAnimatorController>().setTotalTintsInCan(0,0,0);
+        }
+    }
+    public void resetCans()
+    {
+        foreach (GameObject obj in objectsWithTag)
+        {
+            obj.SetActive(false);
         }
     }
 
