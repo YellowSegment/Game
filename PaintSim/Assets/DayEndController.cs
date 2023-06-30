@@ -86,7 +86,14 @@ public class DayEndController : MonoBehaviour
     {
         return dayNumber;
     }
-
+    public void LoadData(int paintCansComing, int redTintCansComing, int greenTintCansComing, int blueTintCansComing, int stirSticksComing)
+    {
+        paintCansAdded = paintCansComing;
+        redTintAdded = redTintCansComing;
+        greenTintAdded = greenTintCansComing;
+        blueTintAdded = blueTintCansComing; 
+        stirSticksAdded = stirSticksComing;
+    }
     public void endOfDay()
     {
         dayNumber++;

@@ -6519,7 +6519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &305044351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26977,6 +26977,54 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1359030348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1359030350}
+  - component: {fileID: 1359030349}
+  m_Layer: 0
+  m_Name: SaveLoadController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1359030349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359030348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d18d9e6e57a2c7458529cf2ebd1497d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balanceController: {fileID: 1918002157}
+  inventoryManager: {fileID: 1968160208}
+  buttonUI: {fileID: 2058472851}
+  dayEndController: {fileID: 1631405742}
+--- !u!4 &1359030350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359030348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 449.77463, y: 405.14792, z: -501.08685}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359109538
 GameObject:
   m_ObjectHideFlags: 0
@@ -39898,6 +39946,7 @@ MonoBehaviour:
   maxGreenTint: {fileID: 1907865070}
   maxBlueTint: {fileID: 1496053413}
   dayEndController: {fileID: 1631405742}
+  worldNumber: 0
   stockConfirm: {fileID: 1530886369}
   dayComing: {fileID: 1417149299}
   price: {fileID: 935043730}
@@ -41113,6 +41162,7 @@ MonoBehaviour:
   balanceControllerObject: {fileID: 1918002155}
   DayEndControllerObject: {fileID: 1631405741}
   goggleUI: {fileID: 1554263799}
+  worldNumber: 1
 --- !u!1 &2059454338
 GameObject:
   m_ObjectHideFlags: 0

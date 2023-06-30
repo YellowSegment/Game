@@ -20,6 +20,7 @@ public class ButtonUI : MonoBehaviour
     List<GameObject> paintCans = new List<GameObject>();
     private int item;
     public GameObject goggleUI;
+    public int worldNumber = 1;
     
 
     // Start is called before the first frame update
@@ -51,8 +52,15 @@ public class ButtonUI : MonoBehaviour
         }
     }
     
-
-
+    public void buyNextWorld()
+    {
+        worldNumber++;
+        inventoryManager.loadWorld(worldNumber);
+    }
+    public int getWorldNumber()
+    {
+        return worldNumber;
+    }
     public void inAccusmartClick()
     {
         desktopUi.SetActive(false);

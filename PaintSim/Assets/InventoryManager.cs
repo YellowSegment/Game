@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class InventoryManager : MonoBehaviour
 {
     public int whiteInventory;
@@ -33,17 +35,42 @@ public class InventoryManager : MonoBehaviour
     public Text maxGreenTint;
     public Text maxBlueTint;
     public DayEndController dayEndController;
+    public int worldNumber;
 
     public Text stockConfirm;
     public Text dayComing;
     public Text price;
 
+    public void loadWorld(int world)
+    {
+        if (world == 1)
+        {
+           SceneManager.LoadScene("World1"); 
+        }
+        if (world == 2)
+        {
+            SceneManager.LoadScene("World2");
+        }   
+    }
+    public void LoadData(int worldNumber, int whiteInventory, int paintCanTotal, int redStock, int redTintCansTotal, int greenStock, int greenTintCanTotal, int blueStock, int blueTintCanTotal, int stirSticks, int[] tintAmounts)
+    {
+        this.worldNumber = worldNumber;
+        this.whiteInventory = whiteInventory;
+        this.paintCanTotal = paintCanTotal;
+        this.redStock = redStock;
+        this.redTintCanTotal = redTintCansTotal;
+        this.greenStock = greenStock;
+        this.greenTintCanTotal = greenTintCanTotal;
+        this.blueStock = blueStock;
+        this.blueTintCanTotal = blueTintCanTotal;
+        this.totalStirSticks = stirSticks;
+        totalRedTint = tintAmounts[0];
+        totalGreenTint = tintAmounts[1];
+        totalBlueTint = tintAmounts[2];
+    }
     void Start()
     {
-        this.paintCanTotal = whiteInventory;
-        this.redTintCanTotal = redStock;
-        this.greenTintCanTotal = greenStock;
-        this.blueTintCanTotal = blueStock;
+        
     }
     public void getInfo(int i)
     {
@@ -87,7 +114,7 @@ public class InventoryManager : MonoBehaviour
         redAmount1.text = getRedTint().ToString();
         greenAmount1.text = getGreenTint().ToString();
         blueAmount1.text = getBlueTint().ToString();
-        paintCanAmount.text = paintCanTotal.ToString();
+        paintCanAmount.text = whiteInventory.ToString();
         totalStirSticksText.text = totalStirSticks.ToString();
         maxRedTint.text = (maxRedTintCans*255).ToString();
         maxBlueTint.text = (maxBlueTintCans*255).ToString();
@@ -110,9 +137,13 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public int getPaintCans()
+    {
+        return whiteInventory;
+    }
     public void addWhiteInventory()
     {
-            whiteInventory++;
+        whiteInventory++;
     }
 
     public void addRedTint()
@@ -120,7 +151,18 @@ public class InventoryManager : MonoBehaviour
             redStock++;
             totalRedTint += 255;
     }
-
+    public int getRedStock()
+    {
+        return redStock;
+    }
+    public int getGreenStock()
+    {
+        return greenStock;
+    }
+    public int getBlueStock()
+    {
+        return blueStock;
+    }
     public int GetRedTintCanTotal()
     {
         return redTintCanTotal;
