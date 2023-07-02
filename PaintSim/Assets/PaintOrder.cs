@@ -31,6 +31,14 @@ public class PaintOrder : MonoBehaviour
             paintRange += 255;
         }
     }
+    public int GetPaintRange()
+    {
+        return paintRange;
+    }
+    public void setPaintRange(int paintRange)
+    {
+        this.paintRange = paintRange;
+    }
     public int getRed()
     {
         return red;

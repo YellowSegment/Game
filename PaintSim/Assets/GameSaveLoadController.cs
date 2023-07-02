@@ -25,11 +25,14 @@ public class GameSaveLoadController : MonoBehaviour
     private int paintCansTotal;
     private int[] tintAmount = new int[3];
     private int dayNumbers;
+    private int paintOptions;
+    private int timeOfDay;
 
     public BalanceController balanceController;
     public InventoryManager inventoryManager;
     public ButtonUI buttonUI;
     public DayEndController dayEndController;
+    public PaintOrder paintOrder;
 
     void Update()
     {
@@ -71,6 +74,9 @@ public class GameSaveLoadController : MonoBehaviour
         tintAmount[2] = inventoryManager.getBlueTint();
 
         dayNumbers = dayEndController.getDayNumber();
+        timeOfDay = dayEndController.getTime();
+
+        paintOptions = paintOrder.GetPaintRange();
 
         Debug.Log("Game Successfully Saved");
     }
@@ -78,7 +84,8 @@ public class GameSaveLoadController : MonoBehaviour
     {
         inventoryManager.LoadData(worldNumber, paintCans, paintCansTotal, redTintCans, redTintCansTotal, greenTintCans, greenTintTotal, blueTintCans, blueTintTotal, stirSticks, tintAmount);
         balanceController.setBalance(balance);
-        dayEndController.LoadData(paintCansComing, redTintCansComing, greenTintCansComing, blueTintCansComing, stirSticksComing, dayNumbers);
+        dayEndController.LoadData(paintCansComing, redTintCansComing, greenTintCansComing, blueTintCansComing, stirSticksComing, dayNumbers, timeOfDay);
+        paintOrder.setPaintRange(paintOptions);
         buttonUI.resetCans();
         buttonUI.addCans(paintCans);
         

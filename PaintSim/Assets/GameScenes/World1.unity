@@ -13250,7 +13250,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -13285,7 +13285,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -13309,7 +13309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: -0.31725612, y: -0.5699779, z: 0.52531964, w: -0.5463636}
-  m_LocalPosition: {x: -26.4, y: 87.03, z: -11.91}
+  m_LocalPosition: {x: -15.7, y: 87.03, z: -11.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27097,6 +27097,7 @@ MonoBehaviour:
   inventoryManager: {fileID: 1968160208}
   buttonUI: {fileID: 2058472851}
   dayEndController: {fileID: 1631405742}
+  paintOrder: {fileID: 1949495846}
 --- !u!4 &1359030350
 Transform:
   m_ObjectHideFlags: 0
@@ -33248,12 +33249,14 @@ MonoBehaviour:
   blueTintComing: {fileID: 1402077060}
   stirSticksComing: {fileID: 729683287}
   timeText: {fileID: 2071683347}
+  sun: {fileID: 705507993}
   time: 0
   totalTime: 0
   timePassed: 0
   hour: 0
   minute: 0
   timerSpeed: 0
+  t: 0
 --- !u!4 &1631405743
 Transform:
   m_ObjectHideFlags: 0

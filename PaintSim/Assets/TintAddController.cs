@@ -94,13 +94,13 @@ public class TintAddController : MonoBehaviour
                             timer = 0f; // Reset the timer
                             inventoryManager.removeRedTint(1);
                         }
-                        else if (tintChoiceController.GetIsBlue() && inventoryManager.getRedTint() > 0 && totalBlueTint <= 255)
+                        else if (tintChoiceController.GetIsBlue() && inventoryManager.getBlueTint() > 0 && totalBlueTint <= 255)
                         {
                             totalBlueTint++;
                             timer = 0f;
                             inventoryManager.removeBlueTint(1);
                         }
-                        else if (tintChoiceController.GetIsGreen() && inventoryManager.getRedTint() > 0 && totalGreenTint <= 255)
+                        else if (tintChoiceController.GetIsGreen() && inventoryManager.getGreenTint() > 0 && totalGreenTint <= 255)
                         {
                             totalGreenTint++;
                             timer = 0f;

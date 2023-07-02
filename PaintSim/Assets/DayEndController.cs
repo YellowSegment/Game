@@ -23,6 +23,11 @@ public class DayEndController : MonoBehaviour
     public Text blueTintComing;
     public Text stirSticksComing;
     public Text timeText;
+    public GameObject sun;
+    private Light sunLight;
+    Color daylight = Color.white;
+    Color nightTime = Color.black;
+    float daySpeed = 250f;
 
     public int time;
     public float totalTime;
@@ -30,11 +35,19 @@ public class DayEndController : MonoBehaviour
     public int hour;
     public int minute;
     public float timerSpeed;
+    public float t;
+    private bool goingUp;
+
+
     void Start()
     {
         buttonUI = ButtonControllerObject.GetComponent<ButtonUI>();
         paintStockUI.text = "+" + paintCansAdded;
-        timerSpeed = 1;
+        timerSpeed = 2.5f;
+        hour = 7;
+        totalTime = 30;
+        sunLight = sun.GetComponent<Light>();
+
     }
     void Update()
     {
@@ -49,7 +62,6 @@ public class DayEndController : MonoBehaviour
         }
         dayNumberUI.text = ""+dayNumber;
 
-
         totalTime += Time.deltaTime*timerSpeed;
         if (totalTime >= 60)
         {
@@ -60,17 +72,46 @@ public class DayEndController : MonoBehaviour
         if (hour == 24)
         {
             hour = 0;
+            endOfDay();
         }
         minute = (int)totalTime;
 
         string formattedHour = hour.ToString("00");
         string formattedMinute = minute.ToString("00");
         timeText.text = formattedHour + ":" + formattedMinute;
+
+        if (goingUp)
+        {
+            t += Time.deltaTime / daySpeed;
+
+            if (t >= 1)
+            {
+                t = 1;
+                goingUp = false;
+            }
+        }
+        else
+        {
+            t -= Time.deltaTime / daySpeed;
+
+            if (t <= 0)
+            {
+                t = 0;
+                goingUp = true;
+            }
+        }
+        
+        sunLight.color = Color.Lerp(daylight, nightTime, t);
     }
+
     public void setTime(int time)
     {
-        hour = time / 100;
-        minute = time % hour;
+        if (time >= 60)
+        {
+            hour = time / 100;
+        }
+        minute = time % 100;
+        totalTime = minute;
     }
 
     public int getTime()
@@ -123,7 +164,7 @@ public class DayEndController : MonoBehaviour
     {
         return dayNumber;
     }
-    public void LoadData(int paintCansComing, int redTintCansComing, int greenTintCansComing, int blueTintCansComing, int stirSticksComing, int dayNumber)
+    public void LoadData(int paintCansComing, int redTintCansComing, int greenTintCansComing, int blueTintCansComing, int stirSticksComing, int dayNumber, int timeOfDay)
     {
         paintCansAdded = paintCansComing;
         redTintAdded = redTintCansComing;
@@ -131,10 +172,16 @@ public class DayEndController : MonoBehaviour
         blueTintAdded = blueTintCansComing; 
         stirSticksAdded = stirSticksComing;
         this.dayNumber = dayNumber;
+        setTime(timeOfDay);
     }
     public void endOfDay()
     {
         dayNumber++;
+        hour = 7;
+        minute = 30;
+        totalTime = minute;
+        sunLight.color = Color.white;
+        t = 0;
         for (int i = 0; i < paintCansAdded; i++)
         {
             buttonUI.addCan();
