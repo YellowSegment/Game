@@ -25,6 +25,7 @@ public class ButtonUI : MonoBehaviour
     public GameObject infoUI;
     public GameObject pauseUI;
     private bool pauseOpen;
+    public Chair chair;
     
 
     // Start is called before the first frame update
@@ -61,14 +62,14 @@ public class ButtonUI : MonoBehaviour
 
             
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && !pauseOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && !pauseOpen && chair.isSitting() == false)
             {
                 pauseUI.SetActive(true);
                 pauseOpen = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && pauseOpen)
+            else if (Input.GetKeyDown(KeyCode.Escape) && pauseOpen && chair.isSitting() == false)
             {
                 pauseUI.SetActive(false);
                 pauseOpen = false;

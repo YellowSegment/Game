@@ -43003,6 +43003,7 @@ MonoBehaviour:
   worldNumber: 1
   infoUI: {fileID: 1175885029}
   pauseUI: {fileID: 65160960}
+  chair: {fileID: 2104861068}
 --- !u!1 &2059454338
 GameObject:
   m_ObjectHideFlags: 0

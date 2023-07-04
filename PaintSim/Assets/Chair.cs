@@ -83,6 +83,8 @@ public class Chair : MonoBehaviour
             }
         }
 
+        
+
         if (sitting)
         {
             if (sittingCamera == null)
@@ -136,4 +138,8 @@ public class Chair : MonoBehaviour
             }
         }
     }
+    public bool isSitting()
+        {
+            return sitting;
+        }
 }
