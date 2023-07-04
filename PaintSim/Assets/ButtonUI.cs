@@ -22,6 +22,9 @@ public class ButtonUI : MonoBehaviour
     public GameObject goggleUI;
     public int worldNumber = 1;
     GameObject[] objectsWithTag;
+    public GameObject infoUI;
+    public GameObject pauseUI;
+    private bool pauseOpen;
     
 
     // Start is called before the first frame update
@@ -31,6 +34,9 @@ public class ButtonUI : MonoBehaviour
         balanceController = balanceControllerObject.GetComponent<BalanceController>();
         objectsWithTag = GameObject.FindGameObjectsWithTag("PaintCan");
         dayEndController = DayEndControllerObject.GetComponent<DayEndController>();
+        infoUI.SetActive(true);
+        pauseUI.SetActive(false);
+        pauseOpen = false;
 
         foreach (GameObject obj in objectsWithTag)
         {
@@ -52,7 +58,31 @@ public class ButtonUI : MonoBehaviour
             PigmentPeddlerWeb.SetActive(false);
             InaccuSmartWeb.SetActive(false);
             onWebsite = false;
+
+            
         }
+        if (Input.GetKeyDown(KeyCode.Escape) && !pauseOpen)
+            {
+                pauseUI.SetActive(true);
+                pauseOpen = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && pauseOpen)
+            {
+                pauseUI.SetActive(false);
+                pauseOpen = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+    }
+    
+    public void resume()
+    {
+        pauseUI.SetActive(false);
+        pauseOpen = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     
     public void buyNextWorld()

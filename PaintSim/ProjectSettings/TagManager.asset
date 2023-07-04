@@ -8,6 +8,15 @@ TagManager:
   - NPC
   - PaintCan
   - PaintCan2
+  - RedTint
+  - BlueTint
+  - GreenTint
+  - AutoTinter
+  - PaintMixer
+  - Fan
+  - CounterSign
+  - Posters
+  - Workbenches
   layers:
   - Default
   - TransparentFX

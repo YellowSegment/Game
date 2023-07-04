@@ -29,21 +29,30 @@ public class GameSaveLoadController : MonoBehaviour
     private int paintOptions;
     private int timeOfDay;
 
+    private int autoTinter;
+    private int paintMixer;
+    private int fan;
+    private int counterTop;
+    private int posters;
+    private int workBench;
+
     public BalanceController balanceController;
     public InventoryManager inventoryManager;
     public ButtonUI buttonUI;
     public DayEndController dayEndController;
     public PaintOrder paintOrder;
+    public DecorToolController decorToolController;
 
+    void Start()
+    {
+        Load();
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.Minus))
         {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Load();
+            wipeData();
+            Debug.Log("Successfully wiped data");
         }
     }
     public void Save()
@@ -79,6 +88,13 @@ public class GameSaveLoadController : MonoBehaviour
 
         paintOptions = paintOrder.GetPaintRange();
 
+        autoTinter = decorToolController.getAutoTinter();
+        paintMixer = decorToolController.getPaintMixer();
+        fan = decorToolController.getFan();
+        counterTop = decorToolController.getCounterTop();
+        posters = decorToolController.getPosters();
+        workBench = decorToolController.getWorkbench();
+
         Debug.Log("Game Successfully Saved");
 
         string destination = Application.persistentDataPath + "/save.dat";
@@ -106,6 +122,12 @@ public class GameSaveLoadController : MonoBehaviour
             writer.WriteLine(dayNumbers);
             writer.WriteLine(timeOfDay);
             writer.WriteLine(paintOptions);
+            writer.WriteLine(autoTinter);
+            writer.WriteLine(paintMixer);
+            writer.WriteLine(fan);
+            writer.WriteLine(counterTop);
+            writer.WriteLine(posters);
+            writer.WriteLine(workBench);
         }
     }
     public void Load()
@@ -138,6 +160,12 @@ public class GameSaveLoadController : MonoBehaviour
                 dayNumbers = int.Parse(reader.ReadLine());
                 timeOfDay = int.Parse(reader.ReadLine());
                 paintOptions = int.Parse(reader.ReadLine());
+                autoTinter = int.Parse(reader.ReadLine());
+                paintMixer = int.Parse(reader.ReadLine());
+                fan = int.Parse(reader.ReadLine());
+                counterTop = int.Parse(reader.ReadLine());
+                posters = int.Parse(reader.ReadLine());
+                workBench = int.Parse(reader.ReadLine());
             }
 
             inventoryManager.LoadData(worldNumber, paintCans, paintCansTotal, redTintCans, redTintCansTotal, greenTintCans, greenTintTotal, blueTintCans, blueTintTotal, stirSticks, tintAmount);
@@ -146,6 +174,7 @@ public class GameSaveLoadController : MonoBehaviour
             paintOrder.setPaintRange(paintOptions);
             buttonUI.resetCans();
             buttonUI.addCans(paintCans);
+            decorToolController.LoadData(autoTinter, paintMixer, fan, counterTop, posters, workBench);
 
             Debug.Log("Game Successfully Loaded");
         }
@@ -153,5 +182,41 @@ public class GameSaveLoadController : MonoBehaviour
         {
             Debug.Log("No saved game found");
         }
+    }
+
+    public void wipeData()
+    {
+        string destination = Application.persistentDataPath + "/save.dat";
+        using (StreamWriter writer = new StreamWriter(destination))
+        {
+            writer.WriteLine(1);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(730);
+            writer.WriteLine(255);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            writer.WriteLine(0);
+            }
     }
 }
