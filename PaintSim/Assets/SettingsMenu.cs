@@ -9,13 +9,24 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer MusicVolume;
     public AudioMixer VoiceVolume;
+    public AudioMixer soundEffects;
+    public AudioMixer notifications;
+
     Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
     public Text musicVolumeText;
     public Text voiceVolumeText;
+    public Text soundEffectsText;
+    public Text notificationsText;
+
     public GameObject AudioSettings;
     public GameObject videoSettings;
     public GameObject gameplaySettings;
+
+    public float musicVolumefloat;
+    public float VoiceVolumefloat;
+    public float soundEffectsFloat;
+    public float notificationsFloat;
 
     void Start()
     {
@@ -36,10 +47,19 @@ public class SettingsMenu : MonoBehaviour
                 currentResolutionIndex = i;
             }
         }
-
+        
+        musicVolumeText.text = getMusicVolume().ToString();
+        voiceVolumeText.text = getVoiceVolume().ToString();
+        soundEffectsText.text = getSoundEffects().ToString();
+        notificationsText.text = getNotificationsFloat().ToString();
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+    }
+
+    void Update()
+    {
+        //IMPLEMENT AUTOSAVE
     }
     
     public void clickAudioSettings()
@@ -81,7 +101,14 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetSoundEffectVolume(float volume)
     {
-        // Implement sound effect volume setting
+        soundEffects.SetFloat("SoundEffects", volume);
+        soundEffectsText.text = volume.ToString();
+    }
+
+    public void SetNoticationVolume(float volume)
+    {
+        notifications.SetFloat("Notifications", volume);
+        notificationsText.text = volume.ToString();
     }
 
     public void SetResolution(int resolutionIndex)
@@ -108,5 +135,22 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+
+    public float getMusicVolume()
+    {
+        return musicVolumefloat;
+    }
+    public float getNotificationsFloat()
+    {
+        return notificationsFloat;
+    }
+    public float getSoundEffects()
+    {
+        return soundEffectsFloat;
+    }
+    public float getVoiceVolume()
+    {
+        return VoiceVolumefloat;
     }
 }
