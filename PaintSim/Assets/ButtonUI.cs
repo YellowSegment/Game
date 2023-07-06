@@ -42,6 +42,7 @@ public class ButtonUI : MonoBehaviour
         foreach (GameObject obj in objectsWithTag)
         {
             paintCans.Add(obj);
+            obj.GetComponent<PaintMixer>().resetPaint();
             obj.SetActive(false);
         }
 

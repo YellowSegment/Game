@@ -17,6 +17,10 @@ public class TintChoiceController : MonoBehaviour
     public bool isGreen;
     public bool isBlue;
 
+    public GameObject redtintOpen;
+    public GameObject greenTintOpen;
+    public GameObject blueTintOpen;
+
 
 
 
@@ -39,6 +43,9 @@ public class TintChoiceController : MonoBehaviour
         SetButtonColors(redTintController, normalColor);
         SetButtonColors(greenTintController, normalColor);
         SetButtonColors(blueTintController, normalColor);
+        redtintOpen.SetActive(false);
+        greenTintOpen.SetActive(false);
+        blueTintOpen.SetActive(false);
     }
 
     private void Update()
@@ -84,8 +91,12 @@ public class TintChoiceController : MonoBehaviour
         SetButtonColors(redTintController, selectedColor);
         ResetButtonColorsExcept(redTintController);
         isRed = true;
-            isBlue = false;
-            isGreen = false;
+        isBlue = false;
+        isGreen = false;
+
+        redtintOpen.SetActive(true);
+        greenTintOpen.SetActive(false);
+        blueTintOpen.SetActive(false);
     }
 
     public void SelectGreenTint()
@@ -97,6 +108,9 @@ public class TintChoiceController : MonoBehaviour
         isRed = false;
             isBlue = false;
             isGreen = true;
+        redtintOpen.SetActive(false);
+        greenTintOpen.SetActive(true);
+        blueTintOpen.SetActive(false);
     }
 
     public void SelectBlueTint()
@@ -108,6 +122,9 @@ public class TintChoiceController : MonoBehaviour
         isRed = false;
             isBlue = true;
             isGreen = false;
+            redtintOpen.SetActive(false);
+        greenTintOpen.SetActive(false);
+        blueTintOpen.SetActive(true);
     }
 
     private void SetButtonColors(Button button, Color color)

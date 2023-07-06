@@ -45,6 +45,13 @@ public class PaintMixer : MonoBehaviour
         }
         
     }
+
+    public void resetPaint()
+    {
+        Color paintColor;
+        paintColor = new Color(255,255,255);
+        paintMaterial.SetColor("_Color", paintColor);
+    }
     void Start()
     {
         paintCanPlaceScript = PaintCanPlaceObject.GetComponent<PaintCanPlace>();
