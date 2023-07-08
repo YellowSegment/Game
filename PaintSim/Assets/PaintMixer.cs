@@ -14,42 +14,41 @@ public class PaintMixer : MonoBehaviour
     private int redTint;
     private int greenTint;
     private int blueTint;
+    private bool mixingPaint;
 
+    private float redAmount;
+    private float greenAmount;
+    private float blueAmount;
+
+    public float timer;
+
+    int mixRed;
+    int mixBlue;
+    int mixGreen;
+
+    public float colorChangeSpeed;
 
     public void MixPaint(int red, int green, int blue)
     {
         if (inventoryManager.getStirSticks() > 0)
         {
+            mixingPaint = true;
+            Cursor.lockState = CursorLockMode.None;
             inventoryManager.useStirStick();
             redTint = red;
             greenTint = green;
             blueTint = blue;
-            float redAmount = red / 255f;
-            float greenAmount = green / 255f;
-            float blueAmount = blue / 255f;
-
-            Color paintColor;
-            if (redAmount == 0 && greenAmount == 0 && blueAmount == 0)
-            {
-                paintColor = new Color(255,255,255);
-            }
-            else
-            {
-                paintColor = new Color(redAmount, greenAmount, blueAmount);   
-            }
-            paintMaterial.SetColor("_Color", paintColor);
         }
         else
         {
             Debug.Log("No more stir sticks");
         }
-        
     }
 
     public void resetPaint()
     {
         Color paintColor;
-        paintColor = new Color(255,255,255);
+        paintColor = new Color(255 / 255f,255/255f,255/255f);
         paintMaterial.SetColor("_Color", paintColor);
     }
     void Start()
@@ -58,6 +57,7 @@ public class PaintMixer : MonoBehaviour
         redTint = -999;
         greenTint = -999;
         blueTint = -999;
+        colorChangeSpeed = .2f;
     }
 
     // Update is called once per frame
@@ -69,13 +69,73 @@ public class PaintMixer : MonoBehaviour
             {
                 paintCanMaterial = paintCanPlaceScript.getPaintCan();
                 count++;
-                //TODO: NEED TO IMPLEMENT A WAY TO GET A MATERIAL FROM THE PAINTCANMATERIAL SCRIPT
             }
         }
         else
         {
             count = 0;
         }
+        if (mixingPaint == true)
+        {
+            if (redTint == 0 && greenTint == 0 && blueTint == 0)
+            {
+                changePaintColor(255,255,255);
+            }
+            else
+            {
+                if (mixRed >= redTint && mixGreen >= greenTint && mixBlue >= blueTint)
+                {
+                     
+                    Cursor.lockState = CursorLockMode.Locked;
+                    mixingPaint = false;  
+                    changePaintColor(redTint, greenTint, blueTint);
+                }
+                else
+                {
+                    float mouseX = Input.GetAxis("Mouse X");
+                    float mouseY = Input.GetAxis("Mouse Y");
+
+                    //Debug.Log(mouseX + " " + mouseY);
+                    int change = (int)(Mathf.Abs(mouseX+mouseY));
+                    if (mixRed != redTint || mixRed < greenTint)
+                    {
+                        mixRed += change;
+                    }
+                    if (mixGreen != greenTint || mixGreen < greenTint)
+                    {
+                        mixGreen += change;
+                    }
+                    if (mixBlue != blueTint || mixBlue < blueTint)
+                    {
+                        mixBlue += change;
+                    }
+                    //Debug.Log(mixRed + " "+  mixGreen +" "+ mixBlue);
+                    
+                    if (timer >= colorChangeSpeed)
+                    {
+                        changePaintColor(mixRed, mixGreen, mixBlue);
+                        timer = 0;
+                        Debug.Log("Update");
+                    }
+                    timer += Time.deltaTime;
+                }
+            }
+        }
+        else
+        {
+            mixRed = 0;
+            mixBlue = 0;
+            mixGreen = 0;
+        }
+    }
+
+    public void changePaintColor(int red, int green, int blue)
+    {
+        redAmount = red / 255f;
+        greenAmount = green / 255f;
+        blueAmount = blue / 255f;
+        Color paintColor = new Color(redAmount, greenAmount, blueAmount);
+        paintMaterial.SetColor("_Color", paintColor);
     }
 
     public int getRedTintAmount()
