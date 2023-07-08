@@ -45,7 +45,7 @@ public class GameSaveLoadController : MonoBehaviour
 
     void Start()
     {
-        Load();
+        //Load();
     }
     void Update()
     {
@@ -190,7 +190,7 @@ public class GameSaveLoadController : MonoBehaviour
         using (StreamWriter writer = new StreamWriter(destination))
         {
             writer.WriteLine(1);
-            writer.WriteLine(0);
+            writer.WriteLine(20);
             writer.WriteLine(0);
             writer.WriteLine(0);
             writer.WriteLine(0);

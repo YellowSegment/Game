@@ -25,7 +25,9 @@ public class TintAddController : MonoBehaviour
     public bool gotPaintCan;
     private PaintCanAnimatorController paintCanAnimatorController;
     private PaintMixer paintMixer;
-
+    public ParticleSystem _particleSystem;
+    private ParticleSystem.MainModule mainModule;
+    private int tempCount;
     void Start()
     {
         count = 0;
@@ -35,6 +37,8 @@ public class TintAddController : MonoBehaviour
         canIsOpen = false;
         paintCanAnimatorController = null;
         paintMixer = null;
+        mainModule = _particleSystem.main;
+        _particleSystem.Stop();
     }
 
     void Update()
@@ -83,34 +87,15 @@ public class TintAddController : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                if (!tintChoiceController.GetIsFastPour())
+                tempCount++;
+                if (tempCount == 1)
+                {
+                    _particleSystem.Play();
+                    Debug.Log("Play");
+                }
+                if (tintChoiceController.GetIsFastPour())
                 {
                     timer += Time.deltaTime; // Increment the timer with the elapsed time
-                    if (timer >= pourRateSlow)
-                    {
-                        if (tintChoiceController.GetIsRed() && inventoryManager.getRedTint() > 0 && totalRedTint <= 255)
-                        {
-                            totalRedTint++; // Increment totalRedTint by 1
-                            timer = 0f; // Reset the timer
-                            inventoryManager.removeRedTint(1);
-                        }
-                        else if (tintChoiceController.GetIsBlue() && inventoryManager.getBlueTint() > 0 && totalBlueTint <= 255)
-                        {
-                            totalBlueTint++;
-                            timer = 0f;
-                            inventoryManager.removeBlueTint(1);
-                        }
-                        else if (tintChoiceController.GetIsGreen() && inventoryManager.getGreenTint() > 0 && totalGreenTint <= 255)
-                        {
-                            totalGreenTint++;
-                            timer = 0f;
-                            inventoryManager.removeGreenTint(1);
-                        }
-                    }
-                }
-                else
-                {
-                    timer += Time.deltaTime;
                     if (timer >= pourRateFast)
                     {
                         if (tintChoiceController.GetIsRed() && inventoryManager.getRedTint() > 0 && totalRedTint <= 255)
@@ -118,27 +103,69 @@ public class TintAddController : MonoBehaviour
                             totalRedTint++; // Increment totalRedTint by 1
                             timer = 0f; // Reset the timer
                             inventoryManager.removeRedTint(1);
+                            mainModule.startColor = new ParticleSystem.MinMaxGradient(Color.red);
+                            var particleEmission = _particleSystem.emission;
+                            particleEmission.rateOverTime = 5;
                         }
                         else if (tintChoiceController.GetIsBlue() && inventoryManager.getBlueTint() > 0 && totalBlueTint <= 255)
                         {
                             totalBlueTint++;
                             timer = 0f;
                             inventoryManager.removeBlueTint(1);
+                            mainModule.startColor = new ParticleSystem.MinMaxGradient(Color.blue);
+                            var particleEmission = _particleSystem.emission;
+                            particleEmission.rateOverTime = 5;
                         }
                         else if (tintChoiceController.GetIsGreen() && inventoryManager.getGreenTint() > 0 && totalGreenTint <= 255)
                         {
                             totalGreenTint++;
                             timer = 0f;
                             inventoryManager.removeGreenTint(1);
+                            mainModule.startColor = new ParticleSystem.MinMaxGradient(Color.green);
+                            var particleEmission = _particleSystem.emission;
+                            particleEmission.rateOverTime = 5;
+                        }
+                    }
+                }
+                else
+                {
+                    timer += Time.deltaTime;
+                    if (timer >= pourRateSlow)
+                    {
+                        if (tintChoiceController.GetIsRed() && inventoryManager.getRedTint() > 0 && totalRedTint <= 255)
+                        {
+                            totalRedTint++; // Increment totalRedTint by 1
+                            timer = 0f; // Reset the timer
+                            inventoryManager.removeRedTint(1);
+                            mainModule.startColor = new ParticleSystem.MinMaxGradient(Color.red);
+                            var particleEmission = _particleSystem.emission;
+                            particleEmission.rateOverTime = 2;
+                        }
+                        else if (tintChoiceController.GetIsBlue() && inventoryManager.getBlueTint() > 0 && totalBlueTint <= 255)
+                        {
+                            totalBlueTint++;
+                            timer = 0f;
+                            inventoryManager.removeBlueTint(1);
+                            mainModule.startColor = new ParticleSystem.MinMaxGradient(Color.blue);
+                            var particleEmission = _particleSystem.emission;
+                            particleEmission.rateOverTime = 2;
+                        }
+                        else if (tintChoiceController.GetIsGreen() && inventoryManager.getGreenTint() > 0 && totalGreenTint <= 255)
+                        {
+                            totalGreenTint++;
+                            timer = 0f;
+                            inventoryManager.removeGreenTint(1);
+                            mainModule.startColor = new ParticleSystem.MinMaxGradient(Color.green);
+                            var particleEmission = _particleSystem.emission;
+                            particleEmission.rateOverTime = 2;
                         }
                     }
                 }
             }
-
             else
             {
-                //penis
-
+                _particleSystem.Stop();
+                tempCount = 0;
             }
         }
     }
