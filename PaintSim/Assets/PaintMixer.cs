@@ -83,7 +83,7 @@ public class PaintMixer : MonoBehaviour
             }
             else
             {
-                if (mixRed >= redTint && mixGreen >= greenTint && mixBlue >= blueTint)
+                if (mixRed <= redTint && mixGreen <= greenTint && mixBlue <= blueTint)
                 {
                      
                     Cursor.lockState = CursorLockMode.Locked;
@@ -97,17 +97,17 @@ public class PaintMixer : MonoBehaviour
 
                     //Debug.Log(mouseX + " " + mouseY);
                     int change = (int)(Mathf.Abs(mouseX+mouseY));
-                    if (mixRed != redTint || mixRed < greenTint)
+                    if (mixRed != redTint || mixRed > greenTint)
                     {
-                        mixRed += change;
+                        mixRed -= change;
                     }
-                    if (mixGreen != greenTint || mixGreen < greenTint)
+                    if (mixGreen != greenTint || mixGreen > greenTint)
                     {
-                        mixGreen += change;
+                        mixGreen -= change;
                     }
-                    if (mixBlue != blueTint || mixBlue < blueTint)
+                    if (mixBlue != blueTint || mixBlue > blueTint)
                     {
-                        mixBlue += change;
+                        mixBlue -= change;
                     }
                     //Debug.Log(mixRed + " "+  mixGreen +" "+ mixBlue);
                     
@@ -123,9 +123,9 @@ public class PaintMixer : MonoBehaviour
         }
         else
         {
-            mixRed = 0;
-            mixBlue = 0;
-            mixGreen = 0;
+            mixRed = 255;
+            mixBlue = 255;
+            mixGreen = 255;
         }
     }
 
