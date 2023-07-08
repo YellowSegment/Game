@@ -14065,7 +14065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e24349901799d3e42a75a996fd37ea25, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e24349901799d3e42a75a996fd37ea25, type: 3}
@@ -20578,7 +20578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1054ae4bd672aa04d83e21a31e835720, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1054ae4bd672aa04d83e21a31e835720, type: 3}
@@ -48495,6 +48495,7 @@ MonoBehaviour:
   totalBlueAdded: {fileID: 1955942627}
   totalGreenAdded: {fileID: 1410497680}
   gotPaintCan: 0
+  _particleSystem: {fileID: 1047146067}
 --- !u!1 &1676087831
 GameObject:
   m_ObjectHideFlags: 0
@@ -51698,7 +51699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 798dce78cac21b64ea2467421ae41a3d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 798dce78cac21b64ea2467421ae41a3d, type: 3}
