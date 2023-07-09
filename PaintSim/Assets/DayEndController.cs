@@ -29,6 +29,7 @@ public class DayEndController : MonoBehaviour
     Color nightTime = Color.black;
     float daySpeed = 250f;
     public GameObject dayTransitionUI;
+    public BalanceController balanceController;
 
     public int time;
     public float totalTime;
@@ -42,6 +43,8 @@ public class DayEndController : MonoBehaviour
     private bool isDone;
     private bool startDay;
     private int dayStartTime;
+    private double heldBalance;
+    public Text heldBalanceText;
 
 
     void Start()
@@ -211,6 +214,12 @@ public class DayEndController : MonoBehaviour
         setTime(timeOfDay);
     }
 
+    public void addMoney(double balance)
+    {
+        heldBalance += balance;
+        heldBalanceText.text = "$" + heldBalance.ToString();
+    }
+
     private float transitionTimer = 0f;
     private bool transition;
 
@@ -258,6 +267,8 @@ public class DayEndController : MonoBehaviour
         minute = 30;
         totalTime = minute;
         sunLight.color = Color.white;
+        balanceController.dayEndAddBalance(heldBalance);
+        heldBalance = 0;
         t = 0;
         for (int i = 0; i < paintCansAdded; i++)
         {

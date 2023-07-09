@@ -15,7 +15,8 @@ public class BalanceController : MonoBehaviour
     public Text tipPrice;
     public Text qualityText;
     public Text totalPrice;
-    
+    public double balanceSent;
+    public DayEndController dayEndController;
 
 
     // Start is called before the first frame update
@@ -95,7 +96,14 @@ public class BalanceController : MonoBehaviour
         basePrice.text = "$" + (Math.Round(price, 2, MidpointRounding.AwayFromZero)).ToString();
         tipPrice.text = "$" + (Math.Round(tipAmount, 2, MidpointRounding.AwayFromZero)).ToString();
         totalPrice.text = "$" + (Math.Round(price + tipAmount, 2, MidpointRounding.AwayFromZero)).ToString();
-        money = Math.Round(money + price + tipAmount, 2, MidpointRounding.AwayFromZero);
+        balanceSent = Math.Round(price + tipAmount, 2, MidpointRounding.AwayFromZero);
+        dayEndController.addMoney(balanceSent);
+    }
+
+    public void dayEndAddBalance(double balance)
+    {
+        money += balance;
+        Debug.Log(balance);
         UpdateBalanceUI();
     }
 
@@ -116,7 +124,6 @@ public class BalanceController : MonoBehaviour
         yield return new WaitForSeconds(2);
         UpdateBalanceUI();
     }
-
 
     public void setBalance(double balance)
     {
