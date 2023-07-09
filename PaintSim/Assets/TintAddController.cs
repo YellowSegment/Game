@@ -64,12 +64,12 @@ public class TintAddController : MonoBehaviour
                 if (canIsOpen)
                 {
                     canIsOpen = false;
-                    Debug.Log("Can is not open");
+                    //Debug.Log("Can is not open");
                 }
                 else if (!canIsOpen)
                 {
                     canIsOpen = true;
-                    Debug.Log("Can is open");
+                    //Debug.Log("Can is open");
                 }
             }
         }
@@ -91,7 +91,7 @@ public class TintAddController : MonoBehaviour
                 if (tempCount == 1)
                 {
                     _particleSystem.Play();
-                    Debug.Log("Play");
+                    //Debug.Log("Play");
                 }
                 if (tintChoiceController.GetIsFastPour())
                 {

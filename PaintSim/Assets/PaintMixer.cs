@@ -57,7 +57,7 @@ public class PaintMixer : MonoBehaviour
         redTint = -999;
         greenTint = -999;
         blueTint = -999;
-        colorChangeSpeed = .2f;
+        colorChangeSpeed = .05f;
     }
 
     // Update is called once per frame
@@ -96,18 +96,18 @@ public class PaintMixer : MonoBehaviour
                     float mouseY = Input.GetAxis("Mouse Y");
 
                     //Debug.Log(mouseX + " " + mouseY);
-                    int change = (int)(Mathf.Abs(mouseX+mouseY));
-                    if (mixRed != redTint || mixRed > greenTint)
+                    int change = (int)(Mathf.Abs(mouseX+mouseY)*2.5);
+                    if (mixRed != redTint || mixRed > redTint)
                     {
-                        mixRed -= change;
+                        mixRed -= change/3;
                     }
                     if (mixGreen != greenTint || mixGreen > greenTint)
                     {
-                        mixGreen -= change;
+                        mixGreen -= change/3;
                     }
                     if (mixBlue != blueTint || mixBlue > blueTint)
                     {
-                        mixBlue -= change;
+                        mixBlue -= change/3;
                     }
                     //Debug.Log(mixRed + " "+  mixGreen +" "+ mixBlue);
                     
@@ -115,7 +115,7 @@ public class PaintMixer : MonoBehaviour
                     {
                         changePaintColor(mixRed, mixGreen, mixBlue);
                         timer = 0;
-                        Debug.Log("Update");
+                        //Debug.Log("Update");
                     }
                     timer += Time.deltaTime;
                 }
