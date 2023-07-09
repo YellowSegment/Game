@@ -8023,7 +8023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &305044351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47247,6 +47247,7 @@ MonoBehaviour:
   timeText: {fileID: 2071683347}
   sun: {fileID: 705507993}
   dayTransitionUI: {fileID: 1670305972}
+  balanceController: {fileID: 1918002157}
   time: 0
   totalTime: 0
   timePassed: 0
@@ -47254,6 +47255,7 @@ MonoBehaviour:
   minute: 0
   timerSpeed: 0
   t: 0
+  heldBalanceText: {fileID: 1816491106}
 --- !u!4 &1631405743
 Transform:
   m_ObjectHideFlags: 0
@@ -54249,6 +54251,8 @@ MonoBehaviour:
   tipPrice: {fileID: 1371453428}
   qualityText: {fileID: 2107720896}
   totalPrice: {fileID: 2049898587}
+  balanceSent: 0
+  dayEndController: {fileID: 1631405742}
 --- !u!1 &1918979445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4032642331417584291, guid: e133dac167ef59c40b7678ba58107c6a, type: 3}
