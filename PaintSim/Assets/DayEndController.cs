@@ -40,6 +40,8 @@ public class DayEndController : MonoBehaviour
     private bool goingUp;
     private bool startTrans;
     private bool isDone;
+    private bool startDay;
+    private int dayStartTime;
 
 
     void Start()
@@ -109,6 +111,28 @@ public class DayEndController : MonoBehaviour
             endDayTransition();
         }
         sunLight.color = Color.Lerp(daylight, nightTime, t);
+
+
+        if (startTrans == true)
+        {
+            pauseTime();
+            endDayTransition();
+        }
+        if (transition == true)
+        {
+            pauseTime();
+        }
+        if (transition == true && Input.GetMouseButtonDown(0))
+        {
+            startDay = true;
+            dayStartTime = 510;
+        }
+        if (startDay == true)
+        {
+            pauseTime();
+            transition = false;
+            endDayTransitionDay();
+        }
     }
 
     public void setTime(int time)
@@ -125,6 +149,11 @@ public class DayEndController : MonoBehaviour
     {
         time = (hour * 100) + minute;
         return time;
+    }
+
+    public void pauseTime()
+    {
+        setTime(0730);
     }
 
     public void SetPaintCan()
@@ -182,64 +211,39 @@ public class DayEndController : MonoBehaviour
         setTime(timeOfDay);
     }
 
-    private float transitionSpeedNight = 0f;
-private float transitionSpeedDay = 255f;
-private float transitionDuration = 2f;
-private float transitionTimer = 0f;
-private bool isTransitioning = false;
-private bool isTransitionComplete = false;
+    private float transitionTimer = 0f;
+    private bool transition;
 
     public void endDayTransition()
     {
-        if (!isTransitioning)
+        dayTransitionUI.SetActive(true);
+        if (transitionTimer < 510)
         {
-            isTransitioning = true;
-            dayTransitionUI.SetActive(true);
-            transitionTimer = 0f;
+            transitionTimer++;
+            dayTransitionUI.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)(transitionTimer/2));
         }
-
-        if (transitionTimer < transitionDuration)
+        if (transitionTimer >= 510)
         {
-            transitionTimer += Time.deltaTime;
-            float t = transitionTimer / transitionDuration;
-            transitionSpeedNight = Mathf.Lerp(0f, 255f, t);
-            dayTransitionUI.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)transitionSpeedNight);
-        }
-        else if (!isTransitionComplete)
-        {
-            isTransitionComplete = true;
-            StartCoroutine(DelayedTransition());
+            startTrans = false;
+            transition = true;
         }
     }
 
-    private IEnumerator DelayedTransition()
-    {
-        yield return new WaitForSeconds(5f); // Delay for 2 seconds
 
-        endDayTransitionDay();
-        isTransitionComplete = false;
-    }
 
     public void endDayTransitionDay()
     {
-        if (!isTransitioning)
+        if (dayStartTime > 0)
         {
-            isTransitioning = true;
-            transitionTimer = 0f;
+            dayStartTime--;
+            dayTransitionUI.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)(dayStartTime/2));
         }
-
-        if (transitionTimer < transitionDuration)
+        if (dayStartTime <= 0)
         {
-            transitionTimer += Time.deltaTime;
-            float t = transitionTimer / transitionDuration;
-            transitionSpeedDay = Mathf.Lerp(255f, 0f, t);
-            dayTransitionUI.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)transitionSpeedDay);
-        }
-        else
-        {
-            isTransitioning = false;
-            dayTransitionUI.SetActive(false);
             startTrans = false;
+            transition = false;
+            startDay = false;
+            Debug.Log("Transition Complete");
         }
     }
 
