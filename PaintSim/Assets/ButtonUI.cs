@@ -26,6 +26,7 @@ public class ButtonUI : MonoBehaviour
     public GameObject pauseUI;
     private bool pauseOpen;
     public Chair chair;
+    public DecorToolController decorToolController;
     
 
     // Start is called before the first frame update
@@ -193,7 +194,6 @@ public class ButtonUI : MonoBehaviour
             buyBlueTint();
             confirmPurchaseUI.SetActive(false);
         }
-        
     }
 
     public void itemClicked(int purchase)

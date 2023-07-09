@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DecorToolController : MonoBehaviour
 {
@@ -23,6 +24,16 @@ public class DecorToolController : MonoBehaviour
     private int counterTop;
     private int posters;
     private int workBench;
+    private int item;
+
+    public Text dayComingText;
+    public Text price;
+    public Text stockAmount;
+
+    public GameObject confirmPurchaseUI;
+    public BalanceController balanceController;
+    public DayEndController dayEndController;
+    public InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     void Start()
@@ -73,29 +84,95 @@ public class DecorToolController : MonoBehaviour
         
     }
 
+    public void itemClicked(int purchase)
+    {
+        confirmPurchaseUI.SetActive(true);
+        item = purchase;
+        getConfirmation(item);
+    }
+
+    public void getConfirmation(int itemNumber)
+    {
+        if (itemNumber == 1)
+        {
+            dayComingText.text = (dayEndController.getDayNumber()+2).ToString();
+            price.text = "$850.00";
+            stockAmount.text = paintMixer + "/" + paintMixers.Count;
+        }
+        else if (itemNumber == 2)
+        {
+            dayComingText.text = (dayEndController.getDayNumber()+2).ToString();
+            price.text = "$1500.00";
+            stockAmount.text = autoTinter + "/" + autoTinters.Count;
+        }
+        else if (itemNumber == 3)
+        {
+            dayComingText.text = (dayEndController.getDayNumber()+1).ToString();
+            price.text = "$20.00";
+            stockAmount.text = counterTop + "/" + counterTopSigns.Count;
+        }
+    }
+
+    public void confirmedPurchase()
+    {
+        if (item == 1)
+        {
+            buyPaintMixer();
+        }
+        else if (item == 2)
+        {
+            buyAutoTinter();
+        }
+        else if (item == 3)
+        {
+            buyCounterSign();
+        }
+        confirmPurchaseUI.SetActive(false);
+    }
+
+    public void cancelConfirm()
+    {
+        confirmPurchaseUI.SetActive(false);
+    }
+
     public void buyAutoTinter()
     {
-        if (autoTinter < autoTinters.Count)
-        {
-            autoTinters[autoTinter].SetActive(true);
-            autoTinter++;
-        }
+        if (balanceController.GetBalance() >= 1500)
+            if (autoTinter < autoTinters.Count)
+            {
+                balanceController.BuyItem(1500);
+                autoTinters[autoTinter].SetActive(true);
+                autoTinter++;
+            }
+            else
+            {
+                Debug.Log("NO ROOM");
+            }
         else
         {
-            Debug.Log("NO ROOM");
+            balanceController.BuyItem(-1);
         }
     }
     public void buyPaintMixer()
     {
-        if (paintMixer < paintMixers.Count)
+        if (balanceController.GetBalance() >= 850)
         {
-            paintMixers[paintMixer].SetActive(true);
-            paintMixer++;
+            if (paintMixer < paintMixers.Count)
+            {
+                balanceController.BuyItem(1500);
+                paintMixers[paintMixer].SetActive(true);
+                paintMixer++;
+            }
+            else
+            {
+                Debug.Log("NO ROOM");
+            }
         }
         else
         {
-            Debug.Log("NO ROOM");
+            balanceController.BuyItem(-1);
         }
+        
     }
     public void buyFan()
     {
@@ -111,11 +188,24 @@ public class DecorToolController : MonoBehaviour
     }
     public void buyCounterSign()
     {
-        if (counterTop < counterTopSigns.Count)
+        if (balanceController.GetBalance() >= 20)
         {
-            counterTopSigns[counterTop].SetActive(true);
-            counterTop++;
+            if (counterTop < counterTopSigns.Count)
+            {
+                balanceController.BuyItem(20);
+                counterTopSigns[counterTop].SetActive(true);
+                counterTop++;
+            }
+            else
+            {
+                Debug.Log("NO ROOM");
+            }
         }
+        else
+        {
+            balanceController.BuyItem(-1);
+        }
+        
     }
     public void buyPosters()
     {
