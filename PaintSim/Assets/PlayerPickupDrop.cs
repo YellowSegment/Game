@@ -7,6 +7,7 @@ public class PlayerPickupDrop : MonoBehaviour
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private LayerMask AllowPickupLayerMask;
     [SerializeField] private Transform ObjectGrabPointTransform;
+    public radioController RadioController;
     float pickupDistance = 2f;
 
     private ObjectGrabable objectGrabable;
@@ -26,6 +27,10 @@ public class PlayerPickupDrop : MonoBehaviour
                         {
                             objectGrabable.Grab(ObjectGrabPointTransform);
                         }
+                    }
+                    if (hit.transform.CompareTag("Radio"))
+                    {
+                        RadioController.radioSettings();
                     }
                 }
             }

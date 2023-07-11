@@ -17,11 +17,15 @@ TagManager:
   - CounterSign
   - Posters
   - Workbenches
+  - PaintShelvesTier1
+  - PaintShelvesTier2
+  - TintCanShelves
+  - Radio
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Radio
   - Water
   - UI
   - whatIsGround

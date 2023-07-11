@@ -51,7 +51,7 @@ public class DayEndController : MonoBehaviour
     {
         buttonUI = ButtonControllerObject.GetComponent<ButtonUI>();
         paintStockUI.text = "+" + paintCansAdded;
-        timerSpeed = 2.5f;
+        timerSpeed = 1.25f;
         hour = 7;
         totalTime = 30;
         sunLight = sun.GetComponent<Light>();
@@ -235,6 +235,7 @@ public class DayEndController : MonoBehaviour
         {
             startTrans = false;
             transition = true;
+            transitionTimer = 0;
         }
     }
 
@@ -244,7 +245,7 @@ public class DayEndController : MonoBehaviour
     {
         if (dayStartTime > 0)
         {
-            dayStartTime--;
+            dayStartTime -= 2;
             dayTransitionUI.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)(dayStartTime/2));
         }
         if (dayStartTime <= 0)
@@ -253,6 +254,7 @@ public class DayEndController : MonoBehaviour
             transition = false;
             startDay = false;
             Debug.Log("Transition Complete");
+            dayStartTime = 510;
         }
     }
 
