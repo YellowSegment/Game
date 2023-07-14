@@ -21,6 +21,7 @@ TagManager:
   - PaintShelvesTier2
   - TintCanShelves
   - Radio
+  - NPCDone
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - PaintCan
   - TintCan
   - OpenPaintCan
-  - 
+  - Barriers
   - 
   - 
   - 

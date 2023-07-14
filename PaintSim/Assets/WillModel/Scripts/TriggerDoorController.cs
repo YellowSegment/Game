@@ -36,6 +36,26 @@ public class TriggerDoorController : MonoBehaviour
         }
     } 
 
+    public void npcEntering()
+    {
+        myDoor.SetBool("DoorOpen", true);
+        myDoor.SetBool("DoorClose", false);
+        isDoorOpen = true;
+        timer = 0;
+        doorCollider.enabled = false;
+    }
+    public void npcExiting()
+    {
+        timer += Time.deltaTime;
+            if (timer > delay)
+            {
+                myDoor.SetBool("DoorClose", true);
+                myDoor.SetBool("DoorOpen", false);
+                isDoorOpen = false;
+                doorCollider.enabled = true;
+            }
+    }
+
     void Update()
     {
         if (interactable && Input.GetKeyDown(KeyCode.E))

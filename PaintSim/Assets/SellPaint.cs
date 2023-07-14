@@ -27,6 +27,8 @@ public class SellPaint : MonoBehaviour
     private bool notSold;
     public GameObject soldItem;
 
+    public npcAtSpotOne npcAtSpotOne;
+
     void Start()
     {
         soldItem.SetActive(false);
@@ -211,6 +213,7 @@ public class SellPaint : MonoBehaviour
             paintcanAnimator.resetCan();
             paintCan.SetActive(false);
             paintCan = null;
+            npcAtSpotOne.itemSold();
         }
     }
 }

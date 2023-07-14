@@ -15,6 +15,8 @@ public class PaintOrder : MonoBehaviour
     public float delay;
     public int paintRange;
 
+
+
     void Start()
     {
         noOrder();

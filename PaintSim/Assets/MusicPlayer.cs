@@ -24,13 +24,7 @@ public class MusicPlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            removeAudioClip(1);
-            Debug.Log(musicPlayer[1]);
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            addAudioClip(1);
-            Debug.Log(musicPlayer[1]);
+            audioSource.Stop();
         }
 
         if(!audioSource.isPlaying)
@@ -42,7 +36,17 @@ public class MusicPlayer : MonoBehaviour
 
     private AudioClip GetRandomClip()
     {
-        return musicPlayer[Random.Range(0,musicPlayer.Count)];
+        AudioClip thisClip = musicPlayer[Random.Range(0,musicPlayer.Count)];
+        if (thisClip != null)
+        {
+            //Debug.Log(thisClip);
+            return thisClip;
+        }
+        else
+        {
+            return null;
+        }
+        
     }
 
     public void removeAudioClip(int songNumber)

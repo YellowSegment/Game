@@ -18,7 +18,7 @@ public class radioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+           
     }
 
     public void radioSettings()
@@ -39,21 +39,23 @@ public class radioController : MonoBehaviour
         if (isOn == true)
         {
             musicPlayer.addAudioClip(0);
+            //Debug.Log("added weather");
         }
         else
         {
             musicPlayer.removeAudioClip(0);
+            //Debug.Log("removed weather");
         }
     }
     public void song2(bool isOn)
     {
         if (isOn == true)
         {
-            musicPlayer.addAudioClip(3);
+            musicPlayer.addAudioClip(1);
         }
         else
         {
-            musicPlayer.removeAudioClip(3);
+            musicPlayer.removeAudioClip(1);
         }
     }
     public void song3(bool isOn)
